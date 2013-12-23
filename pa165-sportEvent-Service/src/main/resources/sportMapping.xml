@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+          
+  <mapping wildcard="false"> 
+    <class-a>com.pa165.sportEventservice.DTO.SportDTO</class-a>
+    <class-b>com.pa165.sportEventpersistence.entities.Sport</class-b>   
+    <field>  
+      <a>sportId</a>
+      <b>sportId</b>
+    <field>
+      <a>name</a>
+      <b>name</b>
+    </field>
+    <field>
+      <a>description</a>
+      <b>description</b>
+    </field>   
+   <field>
+      <a>events</a>
+      <b>events</b>
+      <b-hint>com.pa165.sportEventpersistence.entities.Event</b-hint>
+    </field>
+   </mapping> 
+</mappings>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+          
+  <mapping wildcard="false"> 
+    <class-a>com.pa165.sportEventservice.DTO.EventDTO</class-a>
+    <class-b>com.pa165.sportEventpersistence.entities.Event</class-b>   
+    <field>  
+      <a>eventId</a>
+      <b>eventId</b>
+    <field>
+      <a>name</a>
+      <b>name</b>
+    </field>
+    <field>
+      <a>dateOfEvent</a>
+      <b>dateOfEvent</b>
+    </field>   
+    <field>
+      <a>sport</a>
+      <b>sport</b>
+    </field>  
+   <field>
+      <a>results</a>
+      <b>results</b>
+      <b-hint>com.pa165.sportEventpersistence.entities.Grade</b-hint>
+    </field>
+   </mapping> 
+</mappings>
