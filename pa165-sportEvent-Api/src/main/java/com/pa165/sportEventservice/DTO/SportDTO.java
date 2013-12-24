@@ -55,11 +55,11 @@ public class SportDTO implements java.io.Serializable {
 	}
      
     
-     public List<EventDTO> getResults() {
+     public List<EventDTO> getEvents() {
 		return this.events;
 	}
  
-     public void setResults(List<EventDTO> events) {
+     public void setEvents(List<EventDTO> events) {
 		this.events = events;
 	}
 

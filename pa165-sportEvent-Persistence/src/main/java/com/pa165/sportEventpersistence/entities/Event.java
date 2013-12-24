@@ -4,7 +4,6 @@
  */
 package com.pa165.sportEventpersistence.entities;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.GenerationType;
@@ -106,7 +105,7 @@ public class Event implements java.io.Serializable {
 		this.dateOfEvent = dateOfEvent;
 	}
      
-     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.event", cascade=CascadeType.ALL)
+     @OneToMany(mappedBy = "pk.event", cascade=CascadeType.ALL)
      public List<Grade> getResults() {
 		return this.results;
 	}
@@ -115,7 +114,7 @@ public class Event implements java.io.Serializable {
 		this.results = results;
 	}
 
-     @ManyToOne(fetch = FetchType.LAZY)
+     @ManyToOne
      @JoinColumn(name = "SPORTID", nullable = false)
      public Sport getSport() {
 		return this.sport;

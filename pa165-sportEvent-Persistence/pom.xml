@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.pa165</groupId>
-    <artifactId>pa165-sportEvent-Parent</artifactId>
+    <artifactId>pa165-sportEvent-POM</artifactId>
     <version>1.0-SNAPSHOT</version> 
   </parent>
   
@@ -38,11 +38,7 @@
       <springVersion>3.1.3.RELEASE</springVersion>
   </properties>
   <dependencies>
-       <dependency>
-             <groupId>com.pa165</groupId>
-              <artifactId>pa165-sportEvent-Api</artifactId>
-            <version>1.0-SNAPSHOT</version>           
-        </dependency>
+       
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -217,8 +213,11 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.5.6</version>
         </dependency>
-    
-    
-    
+    <dependency>
+      <groupId>com.pa165</groupId>
+      <artifactId>pa165-sportEvent-Api</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <type>jar</type>
+    </dependency>
   </dependencies>
 </project>

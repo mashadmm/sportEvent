@@ -10,6 +10,7 @@
     <field>  
       <a>eventId</a>
       <b>eventId</b>
+     </field>
     <field>
       <a>name</a>
       <b>name</b>

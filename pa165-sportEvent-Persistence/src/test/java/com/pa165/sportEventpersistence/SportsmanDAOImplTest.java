@@ -10,7 +10,6 @@ import com.pa165.sportEventpersistence.DAOImpl.GradeDAO;
 import com.pa165.sportEventpersistence.DAOImpl.SportDAO;
 import com.pa165.sportEventpersistence.DAOImpl.SportsmanDAO;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import junit.framework.Assert;
 import org.junit.After;
@@ -168,170 +167,183 @@ public class SportsmanDAOImplTest {
         Assert.assertEquals(sportsman, toCompare);
     }
 
-//    @Test
-//    public void getAll() throws ServiceFailureException {
-//        Student student1 = new Student();
-//        student1.setName("student1");
-//        student1.setLectures(new ArrayList<Lecture>());
-//        studentDao.add(student1);
-//
-//        Student student2 = new Student();
-//        student2.setName("student2");
-//        student2.setLectures(new ArrayList<Lecture>());
-//        studentDao.add(student2);
-//
-//        List<Student> students = studentDao.getAll();
-//        Assert.assertTrue(students.contains(student1));
-//        Assert.assertTrue(students.contains(student2));
-//    }
-//
-//    @Test
-//    public void findByLecture() throws ServiceFailureException {
-//        try {
-//            studentDao.findByLecture(null);
-//            Assert.fail("");
-//        } catch (IllegalArgumentPersistenceException ex) {
-//            Assert.assertNotNull(ex);
-//        }
-//
-//    }
-//
-//    @Test
-//    public void findByName() throws ServiceFailureException {
-//        try {
-//            studentDao.findByName(null);
-//            Assert.fail("No exception");
-//        } catch (IllegalArgumentPersistenceException ex) {
-//            Assert.assertNotNull(ex);
-//        }
-//        Student student1 = new Student();
-//        student1.setName("student1");
-//        student1.setLectures(new ArrayList<Lecture>());
-//        studentDao.add(student1);
-//
-//        Student student2 = new Student();
-//        student2.setName("student2");
-//        student2.setLectures(new ArrayList<Lecture>());
-//        studentDao.add(student2);
-//
-//        //normal name
-//        List<Student> toCompare = studentDao.findByName(student1.getName());
-//        Assert.assertTrue(toCompare.contains(student1));
-//        toCompare = studentDao.findByName(student2.getName());
-//        Assert.assertTrue(toCompare.contains(student2));
-//
-//        toCompare = studentDao.findByName("Other name");
-//        Assert.assertFalse(toCompare.contains(student1));
-//    }
-//
-//    @Test
-//    public void enrollStudentToLecture() throws ServiceFailureException {
-//        Student student1 = new Student();
-//        student1.setName("student1");
-//        student1.setLectures(new ArrayList<Lecture>());
-//        studentDao.add(student1);
-//
-//        try {
-//            studentDao.enrollStudentToLecture(null, student1);
-//            Assert.fail("No exception");
-//        } catch (IllegalArgumentPersistenceException ex) {
-//            Assert.assertNotNull(ex);
-//        }
-//
-//        Course course = new Course();
-//        course.setName("Course_Student1");
-//        course.setLanguage(LanguageSpoken.CZECH);
-//        course.setDifficulty(Difficulty.ADVANCED);
-//        courseDao.add(course);
-//
-//        Lector lector = new Lector();
-//        lector.setLectures(new ArrayList<Lecture>());
-//        lector.setName("lector");
-//        lector.setLevelofLanguage(new ArrayList<LevelofLanguage>());
-//        lectorDao.add(lector);
-//
-//        Lecture lecture1 = new Lecture();
-//        lecture1.setCourse(course);
-//        lecture1.setLector(lector);
-//        Calendar calendar = Calendar.getInstance();
-//        Date now = calendar.getTime();
-//        lecture1.setStartTime(new Timestamp(now.getTime()));
-//        lecture1.setEndTime(new Timestamp(now.getTime()));
-//        lectureDao.add(lecture1);
-//
-//        try {
-//            studentDao.enrollStudentToLecture(lecture1, null);
-//            Assert.fail("No exception");
-//        } catch (IllegalArgumentPersistenceException ex) {
-//            Assert.assertNotNull(ex);
-//        }
-//        studentDao.enrollStudentToLecture(lecture1, student1);
-//        Assert.assertEquals(1, student1.getLectures().size());
-//    }
-//
-//    @Test
-//    public void remove() throws ServiceFailureException {
-//        //setting temporary student
-//        Student student1 = new Student();
-//        student1.setName("student1");
-//        student1.setLectures(new ArrayList<Lecture>());
-//        studentDao.add(student1);
-//
-//
-//        //--------Testcase : null course
-//        try {
-//            studentDao.remove(null);
-//            Assert.fail();
-//        } catch (IllegalArgumentPersistenceException ex) {
-//            Assert.assertNotNull(ex);
-//        } finally {
-//            Assert.assertNotNull(studentDao.get(student1.getId()));
-//        }
-//
-//        //---------Testcase : notmal removal
-//        studentDao.remove(student1);
-//        Assert.assertNull(studentDao.get(student1.getId()));
-//    }
-//
-//    @Test
-//    public void modify() throws ServiceFailureException {
-//        //-------Testcase : null object
-//        try {
-//            courseDao.modify(null);
-//            Assert.fail();
-//        } catch (IllegalArgumentPersistenceException ex) {
-//            Assert.assertNotNull(ex);
-//        }
-//
-//        Student student1 = new Student();
-//        student1.setName("student1");
-//        student1.setLectures(new ArrayList<Lecture>());
-//        studentDao.add(student1);
-//
-//        student1.setName(null);
-//
-//        //-------Testcase : null name
-//        try {
-//            studentDao.modify(student1);
-//            Assert.fail();
-//        } catch (IllegalArgumentPersistenceException ex) {
-//        }
-//
-//        student1.setName("modify name");
-//        student1.setLectures(null);
-//        //-------Testcase : null lectures 
-//        try {
-//            studentDao.modify(student1);
-//            Assert.fail();
-//        } catch (IllegalArgumentPersistenceException ex) {
-//        }
-//
-//        student1.setName("student100");
-//        student1.setLectures(new ArrayList<Lecture>());
-//
-//        //--------Testcase : normal modofication
-//        studentDao.modify(student1);
-//        Student toCompare = studentDao.get(student1.getId());
-//        Assert.assertEquals(toCompare, student1);
-//    }
+    
+     @Test
+    public void findEventByAssociativeRelationshipForSportsman() throws IllegalArgumentPersistenceException, ParseException {
+        Sportsman sportsman = new Sportsman();
+        sportsman.setName("Jon");
+        sportsman.setLastname("Snow");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
+	String dateInString1 = "31-08-1982";
+	java.util.Date date1 = sdf.parse(dateInString1);
+        sportsman.setDateOfBirth(date1);
+        
+        try {
+            sportsmanDao.persist(sportsman);
+            
+        } catch (IllegalArgumentPersistenceException ex) {
+            Logger.getLogger(SportsmanDAOImplTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Sport sport = new Sport();
+        sport.setName("Swimming");
+        
+        try {
+           sportDao.persist(sport);
+            
+        } catch (IllegalArgumentPersistenceException ex) {
+            Logger.getLogger(SportsmanDAOImplTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Event event = new Event();
+        event.setName("World Swimming");
+        event.setSport(sport);
+        String dateInString2 = "01-05-2014";
+	java.util.Date date2 = sdf.parse(dateInString2);
+        event.setDateOfEvent(date2);
+        
+         try {
+           eventDao.persist(event);
+            
+        } catch (IllegalArgumentPersistenceException ex) {
+            Logger.getLogger(SportsmanDAOImplTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Grade grade = new Grade();
+        grade.setSportsman(sportsman);
+        grade.setEvent(event);
+        
+        sportsman.getResults().add(grade);
+        
+        Event toCompare = null;
+        List <Grade> resultsToCompare = new ArrayList<Grade>();
+        try {
+            sportsmanDao.persist(sportsman);
+            resultsToCompare = (sportsmanDao.findById(sportsman.getSportsmanId())).getResults();
+            toCompare = (resultsToCompare.get(0)).getEvent();
+        } catch (IllegalArgumentPersistenceException ex) {
+            Logger.getLogger(SportsmanDAOImplTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Assert.assertEquals(event, toCompare);
+    }
+     
+     @Test
+    public void edit() throws IllegalArgumentPersistenceException, ParseException {
+        Sportsman sportsman = new Sportsman();
+        sportsman.setName("Jon");
+        sportsman.setLastname("Snow");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
+	String dateInString = "31-08-1982";
+	java.util.Date date = sdf.parse(dateInString);
+        sportsman.setDateOfBirth(date);
+        Sportsman toCompare = null;
+        try {
+            sportsmanDao.persist(sportsman);
+            sportsman.setName("Jack");
+            sportsmanDao.edit(sportsman);
+            toCompare = sportsmanDao.findById(sportsman.getSportsmanId());
+        } catch (IllegalArgumentPersistenceException ex) {
+            Logger.getLogger(SportsmanDAOImplTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Assert.assertEquals(sportsman, toCompare);
+    }
+     
+    @Test
+    public void findAll() throws ParseException  {
+        Sportsman sportsman1 = new Sportsman();
+        sportsman1.setName("Jon");
+        sportsman1.setLastname("Snow");
+        SimpleDateFormat sdf1 = new SimpleDateFormat("dd-M-yyyy");
+	String dateInString1 = "31-08-1982";
+	java.util.Date date1 = sdf1.parse(dateInString1);
+        sportsman1.setDateOfBirth(date1);
+
+        Sportsman sportsman2 = new Sportsman();
+        sportsman2.setName("Jon");
+        sportsman2.setLastname("Snow");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("dd-M-yyyy");
+	String dateInString2 = "31-08-1982";
+	java.util.Date date2 = sdf2.parse(dateInString2);
+        sportsman2.setDateOfBirth(date2);
+        try {
+            sportsmanDao.persist(sportsman1);
+            sportsmanDao.persist(sportsman2);
+           
+        } catch (IllegalArgumentPersistenceException ex) {
+            Logger.getLogger(SportsmanDAOImplTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        List<Sportsman> sportsmans = sportsmanDao.findAll();
+        Assert.assertTrue(sportsmans.contains(sportsman1));
+        Assert.assertTrue(sportsmans.contains(sportsman2));
+        Assert.assertEquals(2, sportsmans.size());
+    }
+
+    @Test
+    public void remove() throws ParseException  {
+        Sportsman sportsman1 = new Sportsman();
+        sportsman1.setName("Jon");
+        sportsman1.setLastname("Snow");
+        SimpleDateFormat sdf1 = new SimpleDateFormat("dd-M-yyyy");
+	String dateInString1 = "31-08-1982";
+	java.util.Date date1 = sdf1.parse(dateInString1);
+        sportsman1.setDateOfBirth(date1);
+
+        Sportsman sportsman2 = new Sportsman();
+        sportsman2.setName("Jorge");
+        sportsman2.setLastname("McLee");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("dd-M-yyyy");
+	String dateInString2 = "31-08-1982";
+	java.util.Date date2 = sdf2.parse(dateInString2);
+        sportsman2.setDateOfBirth(date2);
+        try {
+            sportsmanDao.persist(sportsman1);
+            sportsmanDao.persist(sportsman2);
+            sportsmanDao.remove(sportsman1);
+           
+        } catch (IllegalArgumentPersistenceException ex) {
+            Logger.getLogger(SportsmanDAOImplTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        List<Sportsman> sportsmans = sportsmanDao.findAll();
+        Assert.assertFalse(sportsmans.contains(sportsman1));
+        Assert.assertTrue(sportsmans.contains(sportsman2));
+        Assert.assertEquals(1, sportsmans.size());
+    }
+    
+
+    @Test
+    public void findByLastname() throws ParseException, IllegalArgumentPersistenceException  {
+        try {
+            sportsmanDao.findByLastname(null);
+            Assert.fail("No exception");
+        } catch (IllegalArgumentPersistenceException ex) {
+            Assert.assertNotNull(ex);
+        }
+        Sportsman sportsman2 = new Sportsman();
+        sportsman2.setName("Jorge");
+        sportsman2.setLastname("McLee");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("dd-M-yyyy");
+	String dateInString2 = "31-08-1982";
+	java.util.Date date2 = sdf2.parse(dateInString2);
+        sportsman2.setDateOfBirth(date2);
+        try {
+            sportsmanDao.persist(sportsman2);
+            
+        } catch (IllegalArgumentPersistenceException ex) {
+            Logger.getLogger(SportsmanDAOImplTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        List<Sportsman> sportsmans = sportsmanDao.findByLastname("McLee");
+        Assert.assertTrue(sportsmans.contains(sportsman2));
+        sportsmans = sportsmanDao.findByLastname("McNee");
+        Assert.assertEquals(0, sportsmans.size());
+
+    }
+
+
+
+
 }

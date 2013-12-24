@@ -4,14 +4,12 @@
  */
 package com.pa165.sportEventpersistence.entities;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.GenerationType;
  
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
@@ -91,12 +89,12 @@ public class Sport implements java.io.Serializable {
 		this.description = description;
 	}
      
-     @OneToMany(fetch = FetchType.LAZY, mappedBy = "sport")
-     public List<Event> getResults() {
+     @OneToMany(mappedBy = "sport")
+     public List<Event> getEvents() {
 		return this.events;
 	}
  
-     public void setResults(List<Event> events) {
+     public void setEvents(List<Event> events) {
 		this.events = events;
 	}
 

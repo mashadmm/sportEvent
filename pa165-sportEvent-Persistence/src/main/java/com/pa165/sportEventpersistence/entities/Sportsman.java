@@ -105,7 +105,7 @@ public class Sportsman implements java.io.Serializable {
 		this.dateOfBirth = dateOfBirth;
 	}
      
-     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.sportsman", cascade=CascadeType.ALL)
+     @OneToMany(mappedBy = "pk.sportsman", cascade=CascadeType.ALL)
      public List<Grade> getResults() {
 		return this.results;
 	}

@@ -47,12 +47,12 @@ public class SportsmanDAO extends BaseDAO<Sportsman> {
         return em;
     }
     
-    public List<Sportsman> findByLastname(String name) throws IllegalArgumentPersistenceException {
-        if (name == null) {
+    public List<Sportsman> findByLastname(String lastname) throws IllegalArgumentPersistenceException {
+        if (lastname == null) {
             throw new IllegalArgumentPersistenceException("Method SportsmanDAO.findByLastname call with Null argument");
         }
         Query q = getEntityManager().createNamedQuery("sportsman.findByLastname");
-        q.setParameter(1, name);
+        q.setParameter("lastname", lastname);
         List<Sportsman> list = (List<Sportsman>) q.getResultList();
         return list;
     }
