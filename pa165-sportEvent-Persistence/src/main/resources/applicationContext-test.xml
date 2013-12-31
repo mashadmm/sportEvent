@@ -21,7 +21,7 @@
     <tx:annotation-driven/>
   
       <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">   
-        <property name="persistenceUnitName" value="PU"/>       
+        <property name="persistenceUnitName" value="PUTest"/>       
     </bean>
   
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">

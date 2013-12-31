@@ -72,22 +72,24 @@ public class GradeServiceImpl implements GradeService {
         this.gradeDAO = gradeDAO;
     }
 
-      public void putGrade(SportsmanDTO sportsman, EventDTO event, int eventgrade) throws ServiceFailureException{
-        if (sportsman == null || sportsman.getSportsmanId() == null) {
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+    public void putGrade(Long sportsmanId, Long eventId, int eventgrade) throws ServiceFailureException{
+        if (sportsmanId == null ) {
             throw new IllegalArgumentException("sportsman is null in sportsmanServiceImpl.putGrade.");
         }
 
-        if (event == null || event.getEventId() == null) {
+        if (eventId == null ) {
             throw new IllegalArgumentException("event is null in sportsmanServiceImpl.putGrade.");
         }
        
-        Grade grade = gradeDAO.findById(sportsman.getSportsmanId(), event.getEventId());
+        Grade grade = gradeDAO.findById(sportsmanId, eventId);
         grade.setGrade(eventgrade);
         gradeDAO.persist(grade);
         
 
     }
     
+    @Transactional(readOnly = true)
     public int getPlace(EventDTO event, SportsmanDTO sportsman) throws ServiceFailureException{
         
         if (sportsman == null || sportsman.getSportsmanId() == null) {
@@ -112,6 +114,11 @@ public class GradeServiceImpl implements GradeService {
         }
         
         return tempplace;
+    }
+
+    @Override
+    public void putGrade(SportsmanDTO sportsman, EventDTO event, int grade) throws ServiceFailureException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

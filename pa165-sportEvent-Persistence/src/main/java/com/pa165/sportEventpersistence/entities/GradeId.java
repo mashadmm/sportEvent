@@ -5,6 +5,7 @@
 package com.pa165.sportEventpersistence.entities;
 
 import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
  
 @Embeddable
@@ -13,7 +14,7 @@ public class GradeId implements java.io.Serializable {
 	private Sportsman sportsman;
         private Event event;
  
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY) 
 	public Sportsman getSportsman() {
 		return sportsman;
 	}
@@ -22,7 +23,7 @@ public class GradeId implements java.io.Serializable {
 		this.sportsman = sportsman;
 	}
  
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	public Event getEvent() {
 		return event;
 	}

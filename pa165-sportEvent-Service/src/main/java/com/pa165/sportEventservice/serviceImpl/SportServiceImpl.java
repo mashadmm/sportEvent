@@ -4,7 +4,9 @@ package com.pa165.sportEventservice.serviceImpl;
 import com.pa165.sportEventpersistence.DAOImpl.EventDAO;
 import com.pa165.sportEventpersistence.DAOImpl.SportDAO;
 import com.pa165.sportEventpersistence.Exceptions.ServiceFailureException;
+import com.pa165.sportEventpersistence.entities.Event;
 import com.pa165.sportEventpersistence.entities.Sport;
+import com.pa165.sportEventservice.DTO.EventDTO;
 import com.pa165.sportEventservice.DTO.SportDTO;
 import com.pa165.sportEventservice.service.SportService;
 import java.util.ArrayList;
@@ -83,9 +85,12 @@ public class SportServiceImpl implements SportService {
         if (sport.getSportId()== null) {
             throw new IllegalArgumentException("sport.Id is null in sportServiceImpl.remove ");
         }
-        Sport toRemove = mapper.map(sport, Sport.class);
-
-        sportDAO.remove(toRemove);
+        
+        Sport toRemove = sportDAO.findById(sport.getSportId());
+        if (toRemove== null) {
+            throw new IllegalArgumentException("not exist object in sportServiceImpl.remove ");
+        }
+             sportDAO.remove(toRemove);
     }
 
     
@@ -154,6 +159,21 @@ public class SportServiceImpl implements SportService {
         return result;
     }
 
+    @Transactional(readOnly = true)
+    public List<EventDTO> getEvents(SportDTO sport) throws ServiceFailureException {
+        if (sport == null) {
+            throw new IllegalArgumentException("sport is null in sportServiceImpl.getEvents.");
+        }
+
+        Sport sportWithEvents = sportDAO.findById(sport.getSportId());
+        List<EventDTO> result = new ArrayList<EventDTO>();
+        for (Event event : sportWithEvents.getEvents()) {
+            EventDTO tempevent = mapper.map(event, EventDTO.class);
+            result.add(tempevent);
+        }
+
+        return result;
+    }
     
   
     

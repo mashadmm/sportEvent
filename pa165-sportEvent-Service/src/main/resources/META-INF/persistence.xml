@@ -15,10 +15,10 @@
       <property name="hibernate.connection.password" value="pa165"/>
       <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.format_sql" value="true"/>
-      <property name="hibernate.hbm2ddl.auto" value="create"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
     </properties>
   </persistence-unit>
-  <persistence-unit name="PUTest" transaction-type="RESOURCE_LOCAL">
+  <persistence-unit name="sportEventPUTest" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>com.pa165.sportEventpersistence.entities.Sportsman</class>
     <class>com.pa165.sportEventpersistence.entities.Event</class>

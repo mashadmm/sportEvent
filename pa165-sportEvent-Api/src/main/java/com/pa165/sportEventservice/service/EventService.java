@@ -7,10 +7,12 @@ package com.pa165.sportEventservice.service;
 
 import com.pa165.sportEventpersistence.Exceptions.ServiceFailureException;
 import com.pa165.sportEventservice.DTO.EventDTO;
+import com.pa165.sportEventservice.DTO.GradeDTO;
 import com.pa165.sportEventservice.DTO.SportsmanDTO;
 import java.util.Date;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -34,5 +36,5 @@ public interface EventService {
     
     public List<SportsmanDTO> getSportsmans(EventDTO event) throws ServiceFailureException;
 
-    
+    public Map<SportsmanDTO, GradeDTO> getSportsmansWithGrades(EventDTO event) throws ServiceFailureException;
 }

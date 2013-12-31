@@ -37,5 +37,7 @@ public interface GradeService {
     
     public void putGrade(SportsmanDTO sportsman, EventDTO event, int grade) throws ServiceFailureException;
     
+    public void putGrade(Long sportsmanId, Long eventId, int eventgrade) throws ServiceFailureException;
+    
     
 }

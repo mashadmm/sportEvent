@@ -9,6 +9,7 @@ import com.pa165.sportEventpersistence.entities.Grade;
 import com.pa165.sportEventpersistence.entities.Event;
 import com.pa165.sportEventpersistence.entities.Sportsman;
 import com.pa165.sportEventservice.DTO.EventDTO;
+import com.pa165.sportEventservice.DTO.GradeDTO;
 import com.pa165.sportEventservice.DTO.SportsmanDTO;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import com.pa165.sportEventservice.service.EventService;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -87,7 +90,10 @@ public class EventServiceImpl implements EventService {
         if (event.getEventId()== null) {
             throw new IllegalArgumentException("event.Id is null in eventServiceImpl.remove ");
         }
-        Event toRemove = mapper.map(event, Event.class);
+        Event toRemove = eventDAO.findById(event.getEventId());
+        if (toRemove== null) {
+            throw new IllegalArgumentException("not exist object in eventServiceImpl.remove ");
+        }
 
         eventDAO.remove(toRemove);
     }
@@ -157,7 +163,7 @@ public class EventServiceImpl implements EventService {
         return result;
     }
 
-    
+    @Transactional(readOnly = true)
     @Override
     public List<EventDTO> findByDates(Date startDate, Date endDate) throws ServiceFailureException {
         if (startDate == null) {
@@ -176,7 +182,8 @@ public class EventServiceImpl implements EventService {
         return result;
         
     }
-
+    
+    @Transactional(readOnly = true)
     @Override
     public List<SportsmanDTO> getSportsmans(EventDTO event) throws ServiceFailureException {
         List<Grade> grades = gradeDAO.findByEvent(event.getEventId());
@@ -188,6 +195,21 @@ public class EventServiceImpl implements EventService {
         }
 
         return result;
+    }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public Map<SportsmanDTO, GradeDTO> getSportsmansWithGrades(EventDTO event) throws ServiceFailureException {
+        List<Grade> grades = gradeDAO.findByEvent(event.getEventId());
+        HashMap<SportsmanDTO,GradeDTO> cache = new HashMap<SportsmanDTO,GradeDTO>();
+        for (Grade grade : grades) {
+            Sportsman sportsmanByGrade = sportsmanDAO.findById(grade.getSportsman().getSportsmanId());
+            SportsmanDTO sportsman = mapper.map(sportsmanByGrade, SportsmanDTO.class);
+            GradeDTO gradeDto = mapper.map(grade, GradeDTO.class);
+            cache.put(sportsman, gradeDto);
+        }
+
+        return cache;
     }
 
     

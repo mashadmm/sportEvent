@@ -93,16 +93,16 @@ public class SportsmanServiceTest {
         sportsmanDTO.setDateOfBirth(date);
         Sportsman sportsman = new Sportsman();
         sportsman.setSportsmanId(5L);
-        sportsman.setName("Jon");
+        sportsman.setName("Jack");
         sportsman.setLastname("Snow");
         dateInString = "31-08-1982";
 	date = sdf.parse(dateInString);
         sportsman.setDateOfBirth(date);
-        
+        when(sportsmanMockDAO.findById(any(Long.class))).thenReturn(sportsman);
         sportsmanService.remove(sportsmanDTO);
 
         verify(sportsmanMockDAO, times(1)).remove(sportsman);
-        verifyNoMoreInteractions(sportsmanMockDAO);
+        
     }
 
     @Test(expected = IllegalArgumentException.class)

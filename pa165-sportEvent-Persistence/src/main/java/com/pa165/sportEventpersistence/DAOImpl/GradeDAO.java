@@ -39,7 +39,7 @@ public class GradeDAO extends BaseDAO <Grade>{
     
     public Grade findById(Long sportsmanid, Long eventid)  throws IllegalArgumentPersistenceException{
             if ((super.validateID(sportsmanid)||(super.validateID(eventid)))){
-            Query q = getEntityManager().createNamedQuery("results.findByID");
+            Query q = getEntityManager().createNamedQuery("grade.findByID");
             q.setParameter("id1", sportsmanid);
             q.setParameter("id2", eventid);
             Grade e = (Grade) q.getSingleResult();
@@ -60,7 +60,7 @@ public class GradeDAO extends BaseDAO <Grade>{
         if (id == null) {
             throw new IllegalArgumentPersistenceException("Method ResultDAO.findBySportsman call with Null argument");
         }
-        Query q = getEntityManager().createNamedQuery("results.findBySportsman");
+        Query q = getEntityManager().createNamedQuery("grade.findBySportsman");
         q.setParameter("id", id);
         List<Grade> list = (List<Grade>) q.getResultList();
         return list;
@@ -70,7 +70,7 @@ public class GradeDAO extends BaseDAO <Grade>{
         if (id == null) {
             throw new IllegalArgumentPersistenceException("Method ResultDAO.findByEvent call with Null argument");
         }
-        Query q = getEntityManager().createNamedQuery("results.findByEvent");
+        Query q = getEntityManager().createNamedQuery("grade.findByEvent");
         q.setParameter("id", id);
         List<Grade> list = (List<Grade>) q.getResultList();
         return list;

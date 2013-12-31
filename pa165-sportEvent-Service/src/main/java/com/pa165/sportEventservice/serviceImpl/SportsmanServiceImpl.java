@@ -9,6 +9,7 @@ import com.pa165.sportEventpersistence.entities.Event;
 import com.pa165.sportEventpersistence.entities.Grade;
 import com.pa165.sportEventpersistence.entities.Sportsman;
 import com.pa165.sportEventservice.DTO.EventDTO;
+import com.pa165.sportEventservice.DTO.GradeDTO;
 import com.pa165.sportEventservice.DTO.SportsmanDTO;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import com.pa165.sportEventservice.service.SportsmanService;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -72,6 +75,7 @@ public class SportsmanServiceImpl implements SportsmanService {
     }
     
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+    @Override
     public SportsmanDTO add(SportsmanDTO sportsman) throws ServiceFailureException {
         if (sportsman == null) {
             throw new IllegalArgumentException("sportsman is null in SportsmanServiceImpl.add ");
@@ -86,6 +90,7 @@ public class SportsmanServiceImpl implements SportsmanService {
 
     
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+    @Override
     public void remove(SportsmanDTO sportsman) throws ServiceFailureException {
         if (sportsman == null) {
             throw new IllegalArgumentException("sportsman is null in  sportsmanServiceImpl.remove ");
@@ -94,13 +99,17 @@ public class SportsmanServiceImpl implements SportsmanService {
         if (sportsman.getSportsmanId()== null) {
             throw new IllegalArgumentException("sportsman.Id is null in sportsmanServiceImpl.remove ");
         }
-        Sportsman toRemove = mapper.map(sportsman, Sportsman.class);
-
+        Sportsman toRemove = sportsmanDAO.findById(sportsman.getSportsmanId());
+        if (toRemove== null) {
+            throw new IllegalArgumentException("not exist object in eventServiceImpl.remove ");
+        }
+                
         sportsmanDAO.remove(toRemove);
     }
 
     
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+    @Override
     public SportsmanDTO edit(SportsmanDTO sportsman) throws ServiceFailureException {
         if (sportsman == null) {
             throw new IllegalArgumentException("sportsman is null in  sportsmanServiceImpl.edit ");
@@ -117,6 +126,7 @@ public class SportsmanServiceImpl implements SportsmanService {
 
    
     @Transactional(readOnly = true)
+    @Override
     public SportsmanDTO findById(Long id) throws ServiceFailureException {
         if (id == null) {
             throw new IllegalArgumentException("ID is null.");
@@ -133,6 +143,7 @@ public class SportsmanServiceImpl implements SportsmanService {
 
     
     @Transactional(readOnly = true)
+    @Override
     public List<SportsmanDTO> getAll() throws ServiceFailureException{
         List<Sportsman> sportsmans = sportsmanDAO.findAll();
         List<SportsmanDTO> result = new ArrayList<SportsmanDTO>();
@@ -146,6 +157,7 @@ public class SportsmanServiceImpl implements SportsmanService {
 
     
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+    @Override
     public SportsmanDTO registerToEvent(SportsmanDTO sportsman, EventDTO event) throws ServiceFailureException {
         if (sportsman == null || sportsman.getSportsmanId() == null) {
             throw new IllegalArgumentException("sportsman is null in sportsmanServiceImpl.registerToEvent.");
@@ -155,12 +167,14 @@ public class SportsmanServiceImpl implements SportsmanService {
             throw new IllegalArgumentException("event is null in sportsmanServiceImpl.registerToEvent.");
         }
         Date currentdate = new Date();
-        if (event.getDateOfEvent().before(currentdate)){
+        Long id = event.getEventId();
+        Event eventForRegistry = eventDAO.findById(event.getEventId());
+        if (eventForRegistry.getDateOfEvent().before(currentdate)){
              throw new IllegalArgumentException("current date is after date of event in sportsmanServiceImpl.registerToEvent.");
         }
 
         Sportsman sportsmanForRegistry = sportsmanDAO.findById(sportsman.getSportsmanId());
-        Event eventForRegistry = eventDAO.findById(event.getEventId());
+        
         Grade registrationEntry = new Grade();
         int gradeByDeffault = 0;
         registrationEntry.setGrade(gradeByDeffault);
@@ -178,6 +192,7 @@ public class SportsmanServiceImpl implements SportsmanService {
     
        
     @Transactional(readOnly = true)
+    @Override
     public List<SportsmanDTO> findByLastname(String lastname) throws ServiceFailureException {
         if (lastname == null) {
             throw new IllegalArgumentException("lastname is null in sportsmanServiceImpl.findByLastname.");
@@ -194,8 +209,22 @@ public class SportsmanServiceImpl implements SportsmanService {
         return result;
     }
 
+    @Transactional(readOnly = true)
+    @Override
+    public Map<EventDTO, GradeDTO> getEventsWithGrades(SportsmanDTO sportsman) throws ServiceFailureException {
+        List<Grade> grades = gradeDAO.findBySportsman(sportsman.getSportsmanId());
+        HashMap<EventDTO,GradeDTO> cache = new HashMap<EventDTO,GradeDTO>();
+        for (Grade grade : grades) {
+            Event eventByGrade = eventDAO.findById(grade.getEvent().getEventId());
+            EventDTO event = mapper.map(eventByGrade, EventDTO.class);
+            GradeDTO gradeDto = mapper.map(grade, GradeDTO.class);
+            cache.put(event, gradeDto);
+        }
+
+        return cache;
+    }
+
     
-  
     
     
    

@@ -7,9 +7,11 @@ package com.pa165.sportEventservice.service;
 
 import com.pa165.sportEventpersistence.Exceptions.ServiceFailureException;
 import com.pa165.sportEventservice.DTO.EventDTO;
+import com.pa165.sportEventservice.DTO.GradeDTO;
 import com.pa165.sportEventservice.DTO.SportsmanDTO;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -31,6 +33,8 @@ public interface SportsmanService {
     public List<SportsmanDTO> findByLastname(String lastname) throws ServiceFailureException;
     
     public SportsmanDTO registerToEvent(SportsmanDTO sportsman, EventDTO event) throws ServiceFailureException;
+    
+    public Map<EventDTO, GradeDTO> getEventsWithGrades(SportsmanDTO sportsman) throws ServiceFailureException ;
     
    
 }

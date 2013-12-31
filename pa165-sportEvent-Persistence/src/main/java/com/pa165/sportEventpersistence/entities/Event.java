@@ -114,7 +114,7 @@ public class Event implements java.io.Serializable {
 		this.results = results;
 	}
 
-     @ManyToOne
+     @ManyToOne(fetch = FetchType.LAZY)
      @JoinColumn(name = "SPORTID", nullable = false)
      public Sport getSport() {
 		return this.sport;

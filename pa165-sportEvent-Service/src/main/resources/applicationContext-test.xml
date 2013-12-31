@@ -31,7 +31,7 @@
     <tx:annotation-driven/>
 
      <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">   
-        <property name="persistenceUnitName" value="PUTest"/> 
+        <property name="persistenceUnitName" value="sportEventPUTest"/> 
             
     </bean>
     

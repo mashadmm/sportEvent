@@ -10,5 +10,6 @@
     <module>pa165-sportEvent-Api</module>   
     <module>pa165-sportEvent-Service</module>
     <module>pa165-sportEvent-Persistence</module>
+    <module>pa165-sportEvent-Presentation</module>
   </modules>
 </project>

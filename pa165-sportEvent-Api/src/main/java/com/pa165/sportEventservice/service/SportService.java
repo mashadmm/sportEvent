@@ -6,6 +6,7 @@ package com.pa165.sportEventservice.service;
 
 
 import com.pa165.sportEventpersistence.Exceptions.ServiceFailureException;
+import com.pa165.sportEventservice.DTO.EventDTO;
 import com.pa165.sportEventservice.DTO.SportDTO;
 
 
@@ -29,7 +30,7 @@ public interface SportService {
     
     public List<SportDTO> findByName(String name) throws ServiceFailureException;
     
-   
+   public List<EventDTO> getEvents(SportDTO sport) throws ServiceFailureException;
 
     
 }
