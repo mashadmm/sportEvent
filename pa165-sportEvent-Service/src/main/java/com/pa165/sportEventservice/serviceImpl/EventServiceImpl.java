@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.pa165.sportEventservice.service.EventService;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 
@@ -201,7 +202,7 @@ public class EventServiceImpl implements EventService {
     @Override
     public Map<SportsmanDTO, GradeDTO> getSportsmansWithGrades(EventDTO event) throws ServiceFailureException {
         List<Grade> grades = gradeDAO.findByEvent(event.getEventId());
-        HashMap<SportsmanDTO,GradeDTO> cache = new HashMap<SportsmanDTO,GradeDTO>();
+        Map<SportsmanDTO,GradeDTO> cache = new LinkedHashMap<SportsmanDTO,GradeDTO>();
         for (Grade grade : grades) {
             Sportsman sportsmanByGrade = sportsmanDAO.findById(grade.getSportsman().getSportsmanId());
             SportsmanDTO sportsman = mapper.map(sportsmanByGrade, SportsmanDTO.class);

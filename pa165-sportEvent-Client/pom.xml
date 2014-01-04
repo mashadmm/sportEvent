@@ -110,6 +110,23 @@
 					<catalog>${basedir}/src/jax-ws-catalog.xml</catalog>
 				</configuration>
 			</plugin>
+                        <plugin>
+                                <groupId>org.codehaus.mojo</groupId>
+                                <artifactId>exec-maven-plugin</artifactId>
+                                <version>1.2.1</version>
+
+                                <configuration>
+                                 <executable>java</executable>
+                                 <arguments>
+                                  <argument>-Dmyproperty=myvalue</argument>
+                                  <argument>-classpath</argument>
+                                  <!-- automatically creates the classpath using all project dependencies,
+                                  also adding the project build directory -->
+                                  <classpath/>
+                                  <argument>com.muni.fi.pa165.gui.GUI</argument>
+                                 </arguments>
+                                </configuration>
+                       </plugin>
 		</plugins>
 	</build>
 	<repositories>

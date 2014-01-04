@@ -18,7 +18,7 @@ import javax.persistence.Transient;
  
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "grade.findBySportsman", query = "SELECT u FROM Grade u WHERE u.pk.sportsman.sportsmanId = :id"),
+        @NamedQuery(name = "grade.findBySportsman", query = "SELECT u FROM Grade u WHERE u.pk.sportsman.sportsmanId = :id ORDER BY u.pk.event.dateOfEvent"),
         @NamedQuery(name = "grade.findByID", query = "SELECT u FROM Grade u WHERE u.pk.sportsman.sportsmanId = :id1 AND u.pk.event.eventId = :id2"),
         @NamedQuery(name = "grade.findByEvent", query = "SELECT u FROM Grade u WHERE u.pk.event.eventId = :id ORDER BY u.grade DESC"),
 

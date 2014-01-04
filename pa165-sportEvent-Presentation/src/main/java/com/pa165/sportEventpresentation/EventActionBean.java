@@ -14,7 +14,6 @@ import com.pa165.sportEventservice.service.GradeService;
 import com.pa165.sportEventservice.service.SportService;
 import com.pa165.sportEventservice.service.SportsmanService;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import net.sourceforge.stripes.action.ActionBean;
