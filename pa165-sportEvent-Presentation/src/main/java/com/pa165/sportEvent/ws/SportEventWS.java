@@ -49,12 +49,25 @@ public interface SportEventWS{
          
          void eventManagerdelete(EventDTO event);
          
-         EventDTO eventManagerfindById(Long eventid) throws ServiceFailureException;
+         EventDTO eventManagerfindById(Long eventid) throws ServiceFailureException ;
          
          // Grade
          
-         public void gradeManagerGetPlace(EventDTO eventDTO, SportsmanDTO sportsmanDTO);
          public void gradeManagerPutGrade(EventDTO eventDTO, SportsmanDTO sportsmanDTO, int grade);
+         
+         public List<GradeDTO> gradeManagerfindAll();
+         
+         void gradeManagersave(GradeDTO grade);
+         
+         void gradeManagerupdate(GradeDTO grade);
+         
+         void gradeManagerdelete(GradeDTO grade);
+         
+         GradeDTO gradeManagerfindById(Long sportsmanid, Long eventid) throws ServiceFailureException ;
+         
+         //Sport
+         
+         List<SportDTO> sportManagergetAll();
             
         
 }

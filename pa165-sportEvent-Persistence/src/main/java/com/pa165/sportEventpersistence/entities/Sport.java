@@ -16,6 +16,11 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 
 /**
@@ -33,6 +38,8 @@ import javax.persistence.Table;
          
 })
 @Table(name = "sport")
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Sport implements java.io.Serializable {
     
     private static final long serialVersionUID = 1L;
@@ -89,6 +96,8 @@ public class Sport implements java.io.Serializable {
 		this.description = description;
 	}
      
+     @XmlAttribute
+     @XmlTransient
      @OneToMany(mappedBy = "sport")
      public List<Event> getEvents() {
 		return this.events;

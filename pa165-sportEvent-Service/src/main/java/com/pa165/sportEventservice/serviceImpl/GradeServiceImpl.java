@@ -116,9 +116,108 @@ public class GradeServiceImpl implements GradeService {
         return tempplace;
     }
 
+    @Transactional(readOnly = true)
+    public List<GradeDTO> getGrades() throws ServiceFailureException {
+                
+        List<GradeDTO> result = new ArrayList<GradeDTO>();
+        for (Grade grade : gradeDAO.findAll()) {
+            GradeDTO tempgrade = mapper.map(grade, GradeDTO.class);
+            result.add(tempgrade);
+        }
+
+        return result;
+    }
+
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+    public GradeDTO add(GradeDTO grade) throws ServiceFailureException {
+        if (grade == null) {
+            throw new IllegalArgumentException("grade is null in  gradeServiceImpl.add ");
+        }
+
+        if (grade.getSportsman().getSportsmanId()== null) {
+            throw new IllegalArgumentException("grade.Sportsman is null in gradeServiceImpl.add ");
+        }
+        
+        if (grade.getEvent().getEventId()== null) {
+            throw new IllegalArgumentException("grade.Event is null in gradeServiceImpl.add ");
+        }
+        Grade toAdd = gradeDAO.findById(grade.getSportsman().getSportsmanId(), grade.getEvent().getEventId());
+        if (!(toAdd== null)) {
+            throw new IllegalArgumentException("already exist object in gradeServiceImpl.add ");
+        }
+
+        Grade gradeToAdd = mapper.map(grade, Grade.class);
+
+        gradeDAO.persist(gradeToAdd);
+        return mapper.map(gradeToAdd, GradeDTO.class);
+
+    }
+
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+    public void remove(GradeDTO grade) throws ServiceFailureException {
+        if (grade == null) {
+            throw new IllegalArgumentException("grade is null in  gradeServiceImpl.remove ");
+        }
+
+        if (grade.getSportsman().getSportsmanId()== null) {
+            throw new IllegalArgumentException("grade.Sportsman is null in gradeServiceImpl.remove ");
+        }
+        
+        if (grade.getEvent().getEventId()== null) {
+            throw new IllegalArgumentException("grade.Event is null in gradeServiceImpl.remove ");
+        }
+        
+        Grade toRemove = gradeDAO.findById(grade.getSportsman().getSportsmanId(), grade.getEvent().getEventId());
+        if (toRemove== null) {
+            throw new IllegalArgumentException("not exist object in gradeServiceImpl.remove ");
+        }
+             gradeDAO.remove(toRemove);
+    }
+    
+
     @Override
-    public void putGrade(SportsmanDTO sportsman, EventDTO event, int grade) throws ServiceFailureException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+    public GradeDTO edit(GradeDTO grade) throws ServiceFailureException {
+        if (grade == null) {
+            throw new IllegalArgumentException("grade is null in  gradeServiceImpl.remove ");
+        }
+
+        if (grade.getSportsman().getSportsmanId()== null) {
+            throw new IllegalArgumentException("grade.Sportsman is null in gradeServiceImpl.remove ");
+        }
+        
+        if (grade.getEvent().getEventId()== null) {
+            throw new IllegalArgumentException("grade.Event is null in gradeServiceImpl.remove ");
+        }
+        
+        Grade toEdit = gradeDAO.findById(grade.getSportsman().getSportsmanId(), grade.getEvent().getEventId());
+        if (toEdit== null) {
+            throw new IllegalArgumentException("not exist object in gradeServiceImpl.edit ");
+        }
+        Grade gradeToAdd = mapper.map(grade, Grade.class);
+        
+        gradeDAO.edit(gradeToAdd);
+        return mapper.map(gradeToAdd, GradeDTO.class);
+        
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public GradeDTO findById(Long sportsmanid, Long eventid) throws ServiceFailureException {
+       if (sportsmanid == null) {
+            throw new IllegalArgumentException("grade.Sportsman is null in gradeServiceImpl.findById ");
+        }
+        
+        if (eventid == null) {
+            throw new IllegalArgumentException("grade.Event is null in gradeServiceImpl.findById ");
+        }
+
+        Grade grade = gradeDAO.findById(sportsmanid, eventid);
+        GradeDTO gradeDTO = null;
+        if (grade != null) {
+            gradeDTO = mapper.map(grade, GradeDTO.class);
+        }
+        return gradeDTO;
     }
     
     

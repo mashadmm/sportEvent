@@ -11,5 +11,6 @@
     <module>pa165-sportEvent-Service</module>
     <module>pa165-sportEvent-Persistence</module>
     <module>pa165-sportEvent-Presentation</module>
+    <module>pa165-sportEvent-Client</module>
   </modules>
 </project>

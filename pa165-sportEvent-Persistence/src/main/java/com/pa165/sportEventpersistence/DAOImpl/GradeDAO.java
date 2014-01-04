@@ -42,8 +42,10 @@ public class GradeDAO extends BaseDAO <Grade>{
             Query q = getEntityManager().createNamedQuery("grade.findByID");
             q.setParameter("id1", sportsmanid);
             q.setParameter("id2", eventid);
-            Grade e = (Grade) q.getSingleResult();
-            return e;
+            List <Grade> e =  q.getResultList();
+            if (e.size()>0){
+                return e.get(0);
+            } else {return null;}    
         }
         return null;
     }

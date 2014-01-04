@@ -22,6 +22,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 
 
@@ -47,6 +52,8 @@ import javax.persistence.Temporal;
          
 })
 @Table(name = "event")
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Event implements java.io.Serializable {
     
     private static final long serialVersionUID = 1L;
@@ -105,7 +112,9 @@ public class Event implements java.io.Serializable {
 		this.dateOfEvent = dateOfEvent;
 	}
      
-     @OneToMany(mappedBy = "pk.event", cascade=CascadeType.ALL)
+     @XmlAttribute
+     @XmlTransient
+     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.event", cascade=CascadeType.ALL)
      public List<Grade> getResults() {
 		return this.results;
 	}
@@ -113,7 +122,9 @@ public class Event implements java.io.Serializable {
      public void setResults(List<Grade> results) {
 		this.results = results;
 	}
-
+     
+     @XmlAttribute
+     @XmlTransient
      @ManyToOne(fetch = FetchType.LAZY)
      @JoinColumn(name = "SPORTID", nullable = false)
      public Sport getSport() {
