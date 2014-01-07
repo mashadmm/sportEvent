@@ -118,7 +118,7 @@
                                 <configuration>
                                  <executable>java</executable>
                                  <arguments>
-                                  <argument>-Dmyproperty=myvalue</argument>
+                                  <argument>-Dexec.executable=java</argument>
                                   <argument>-classpath</argument>
                                   <!-- automatically creates the classpath using all project dependencies,
                                   also adding the project build directory -->
