@@ -14,5 +14,5 @@ Run web application:
 
 
 Run desktop application:
--in command line go to the folder: cd .../pa165-sportEvent-Client 
+- in command line go to the folder: cd .../pa165-sportEvent-Client 
 - then: mvn exec:exec 
