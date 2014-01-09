@@ -1,0 +1,302 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.2.6b01 . --><xs:schema xmlns:tns="http://ws.sportEvent.pa165.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.sportEvent.pa165.com/">
+
+<xs:element name="ServiceFailureException" type="tns:ServiceFailureException"/>
+
+<xs:element name="eventManagerdelete" type="tns:eventManagerdelete"/>
+
+<xs:element name="eventManagerdeleteResponse" type="tns:eventManagerdeleteResponse"/>
+
+<xs:element name="eventManagerfindAll" type="tns:eventManagerfindAll"/>
+
+<xs:element name="eventManagerfindAllResponse" type="tns:eventManagerfindAllResponse"/>
+
+<xs:element name="eventManagerfindById" type="tns:eventManagerfindById"/>
+
+<xs:element name="eventManagerfindByIdResponse" type="tns:eventManagerfindByIdResponse"/>
+
+<xs:element name="eventManagersave" type="tns:eventManagersave"/>
+
+<xs:element name="eventManagersaveResponse" type="tns:eventManagersaveResponse"/>
+
+<xs:element name="eventManagerupdate" type="tns:eventManagerupdate"/>
+
+<xs:element name="eventManagerupdateResponse" type="tns:eventManagerupdateResponse"/>
+
+<xs:element name="gradeManagerPutGrade" type="tns:gradeManagerPutGrade"/>
+
+<xs:element name="gradeManagerPutGradeResponse" type="tns:gradeManagerPutGradeResponse"/>
+
+<xs:element name="gradeManagerdelete" type="tns:gradeManagerdelete"/>
+
+<xs:element name="gradeManagerdeleteResponse" type="tns:gradeManagerdeleteResponse"/>
+
+<xs:element name="gradeManagerfindAll" type="tns:gradeManagerfindAll"/>
+
+<xs:element name="gradeManagerfindAllResponse" type="tns:gradeManagerfindAllResponse"/>
+
+<xs:element name="gradeManagerfindById" type="tns:gradeManagerfindById"/>
+
+<xs:element name="gradeManagerfindByIdResponse" type="tns:gradeManagerfindByIdResponse"/>
+
+<xs:element name="gradeManagersave" type="tns:gradeManagersave"/>
+
+<xs:element name="gradeManagersaveResponse" type="tns:gradeManagersaveResponse"/>
+
+<xs:element name="gradeManagerupdate" type="tns:gradeManagerupdate"/>
+
+<xs:element name="gradeManagerupdateResponse" type="tns:gradeManagerupdateResponse"/>
+
+<xs:element name="sportManagergetAll" type="tns:sportManagergetAll"/>
+
+<xs:element name="sportManagergetAllResponse" type="tns:sportManagergetAllResponse"/>
+
+<xs:element name="sportsmanManagerdelete" type="tns:sportsmanManagerdelete"/>
+
+<xs:element name="sportsmanManagerdeleteResponse" type="tns:sportsmanManagerdeleteResponse"/>
+
+<xs:element name="sportsmanManagerfindAll" type="tns:sportsmanManagerfindAll"/>
+
+<xs:element name="sportsmanManagerfindAllResponse" type="tns:sportsmanManagerfindAllResponse"/>
+
+<xs:element name="sportsmanManagerfindById" type="tns:sportsmanManagerfindById"/>
+
+<xs:element name="sportsmanManagerfindByIdResponse" type="tns:sportsmanManagerfindByIdResponse"/>
+
+<xs:element name="sportsmanManagersave" type="tns:sportsmanManagersave"/>
+
+<xs:element name="sportsmanManagersaveResponse" type="tns:sportsmanManagersaveResponse"/>
+
+<xs:element name="sportsmanManagerupdate" type="tns:sportsmanManagerupdate"/>
+
+<xs:element name="sportsmanManagerupdateResponse" type="tns:sportsmanManagerupdateResponse"/>
+
+<xs:complexType name="sportsmanManagerupdate">
+<xs:sequence>
+<xs:element name="arg0" type="tns:sportsmanDTO" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sportsmanDTO">
+<xs:sequence>
+<xs:element name="dateOfBirth" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="lastname" type="xs:string" minOccurs="0"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="results" type="tns:gradeDTO" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="sportsmanId" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="gradeDTO">
+<xs:sequence>
+<xs:element name="event" type="tns:eventDTO" minOccurs="0"/>
+<xs:element name="grade" type="xs:int" minOccurs="0"/>
+<xs:element name="pk" type="tns:gradeIdDTO" minOccurs="0"/>
+<xs:element name="sportsman" type="tns:sportsmanDTO" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eventDTO">
+<xs:sequence>
+<xs:element name="dateOfEvent" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="eventId" type="xs:long" minOccurs="0"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="results" type="tns:gradeDTO" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="sport" type="tns:sportDTO" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sportDTO">
+<xs:sequence>
+<xs:element name="description" type="xs:string" minOccurs="0"/>
+<xs:element name="events" type="tns:eventDTO" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="sportId" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="gradeIdDTO">
+<xs:sequence>
+<xs:element name="event" type="tns:eventDTO" minOccurs="0"/>
+<xs:element name="sportsman" type="tns:sportsmanDTO" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sportsmanManagerupdateResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="eventManagerdelete">
+<xs:sequence>
+<xs:element name="arg0" type="tns:eventDTO" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eventManagerdeleteResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="eventManagerupdate">
+<xs:sequence>
+<xs:element name="arg0" type="tns:eventDTO" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eventManagerupdateResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="sportsmanManagerfindById">
+<xs:sequence>
+<xs:element name="arg0" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sportsmanManagerfindByIdResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:sportsmanDTO" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="gradeManagerupdate">
+<xs:sequence>
+<xs:element name="arg0" type="tns:gradeDTO" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="gradeManagerupdateResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="gradeManagersave">
+<xs:sequence>
+<xs:element name="arg0" type="tns:gradeDTO" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="gradeManagersaveResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="eventManagerfindAll">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="eventManagerfindAllResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:eventDTO" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="gradeManagerfindAll">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="gradeManagerfindAllResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:gradeDTO" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sportsmanManagersave">
+<xs:sequence>
+<xs:element name="arg0" type="tns:sportsmanDTO" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sportsmanManagersaveResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="gradeManagerfindById">
+<xs:sequence>
+<xs:element name="arg0" type="xs:long" minOccurs="0"/>
+<xs:element name="arg1" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="gradeManagerfindByIdResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:gradeDTO" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sportsmanManagerdelete">
+<xs:sequence>
+<xs:element name="arg0" type="tns:sportsmanDTO" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sportsmanManagerdeleteResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="sportManagergetAll">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="sportManagergetAllResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:sportDTO" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sportsmanManagerfindAll">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="sportsmanManagerfindAllResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:sportsmanDTO" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eventManagerfindById">
+<xs:sequence>
+<xs:element name="arg0" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eventManagerfindByIdResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:eventDTO" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ServiceFailureException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="gradeManagerdelete">
+<xs:sequence>
+<xs:element name="arg0" type="tns:gradeDTO" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="gradeManagerdeleteResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="gradeManagerPutGrade">
+<xs:sequence>
+<xs:element name="arg0" type="tns:eventDTO" minOccurs="0"/>
+<xs:element name="arg1" type="tns:sportsmanDTO" minOccurs="0"/>
+<xs:element name="arg2" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="gradeManagerPutGradeResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="eventManagersave">
+<xs:sequence>
+<xs:element name="arg0" type="tns:eventDTO" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="eventManagersaveResponse">
+<xs:sequence/>
+</xs:complexType>
+</xs:schema>
