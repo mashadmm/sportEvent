@@ -1,1 +1,6 @@
-/pa165-sportEvent-Client/target/
+/pa165-sportEvent-POM/pa165-sportEvent-Client/target/
+/pa165-sportEvent-POM/pa165-sportEvent-Api/target/
+/pa165-sportEvent-POM/pa165-sportEvent-Persistence/target/
+/pa165-sportEvent-POM/pa165-sportEvent-Presentation/target/
+/pa165-sportEvent-POM/pa165-sportEvent-Service/target/
+*.log
