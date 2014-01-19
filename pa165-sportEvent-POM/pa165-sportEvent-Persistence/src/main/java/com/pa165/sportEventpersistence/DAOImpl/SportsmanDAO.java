@@ -56,5 +56,20 @@ public class SportsmanDAO extends BaseDAO<Sportsman> {
         List<Sportsman> list = (List<Sportsman>) q.getResultList();
         return list;
     }
+    
+    public Sportsman getByLogin(String login) throws IllegalArgumentPersistenceException {
+        if(login == null){
+          throw new IllegalArgumentPersistenceException("Method SportsmanDAOImpl.get call with Null argument name");
+        }
+        List<Sportsman> result;
+        result = em.createQuery( "from Sportsman s where s.userName=:login" ).setParameter("login",login).getResultList();
+ 
+        if (!result.isEmpty()) {
+            return result.get(0);
+        }
+        else {
+            return null;
+        }
+    }
 
 }
