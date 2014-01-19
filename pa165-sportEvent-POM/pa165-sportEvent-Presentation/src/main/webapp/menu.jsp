@@ -2,6 +2,7 @@
 <%@ taglib prefix="s" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <s:layout-definition>
 	<html>
@@ -26,11 +27,22 @@
 
 						<div class="collapse navbar-collapse navbar-ex1-collapse">
 							<ul class="nav navbar-nav">
-								<li><s:link href="/index.jsp"><f:message key="Home"/></s:link></li>
-								<li><s:link href="/sportsman/sportsman.jsp"><f:message key="Sportsman"/></s:link></li>
+								
+                                                                <li><s:link href="/index.jsp"><f:message key="Home"/></s:link></li>
+                                                                <c:choose>
+                                                        	       <c:when test="${pageContext.request.isUserInRole('ROLE_ADMIN')}" >
+                                                                            <li><s:link href="/sportsman/sportsman.jsp"><f:message key="Sportsman"/></s:link></li>
+                                                                       </c:when>
+                                                                     <c:otherwise>
+                                                                            <li><s:link beanclass="com.pa165.sportEventpresentation.SportsmanActionBean" event="showEventsByLogin"><f:message key="MyEvents"/></s:link></li>
+                                                                    </c:otherwise>
+                                                                </c:choose>
 								<li><s:link href="/event/event.jsp"><f:message key="events"/></s:link></li>
-								<li><s:link href="/sport/sport.jsp"><f:message key="Sports"/></s:link></li>
-
+								<li style="padding-right: 350"><s:link href="/sport/sport.jsp"><f:message key="Sports"/></s:link></li>
+                                                                <li><f:message key="LoggedIn"/><br/>
+                                                                    <sec:authentication property="principal.username"/>
+                                                                </li>
+                                                                <li><a href="<c:url value="/j_spring_security_logout" />" ><f:message key="Logout"/></a></li>
 							</ul>
 
 						</div><!-- /.navbar-collapse -->

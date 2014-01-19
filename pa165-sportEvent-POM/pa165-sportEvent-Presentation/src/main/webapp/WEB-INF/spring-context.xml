@@ -24,6 +24,14 @@ default-autowire="byName" >
     <context:annotation-config/>
     <tx:annotation-driven/>
     
+    <bean id="dataSource"
+        class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver" />
+	<property name="url" value="jdbc:derby://localhost:1527/pa165" />
+	<property name="username" value="pa165" />
+	<property name="password" value="pa165" />
+  </bean>
+    
     
   
 </beans>

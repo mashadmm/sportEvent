@@ -4,16 +4,16 @@
 <%@ taglib prefix="s" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <s:layout-render name="/menu.jsp" nadpis="Sportsman">
     <s:layout-component name="telo">
-        
-            <s:useActionBean beanclass="com.pa165.sportEventpresentation.SportsmanActionBean" var="actionBean"/>
+        <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}" >
+                <s:useActionBean beanclass="com.pa165.sportEventpresentation.SportsmanActionBean" var="actionBean"/>
 
-            <s:form beanclass="com.pa165.sportEventpresentation.SportsmanActionBean">          
-                <fieldset><legend><f:message key="sportsman.add"/></legend>
-                    <%@include file="sportsmanForm.jsp"%>
-                    <br>
-                    <s:submit name="saveAdd" class="btn" ><f:message key="Add" /></s:submit>
-                    </fieldset>
-            </s:form>
-       
+                <s:form beanclass="com.pa165.sportEventpresentation.SportsmanActionBean">          
+                    <fieldset><legend><f:message key="sportsman.add"/></legend>
+                        <%@include file="sportsmanForm.jsp"%>
+                        <br>
+                        <s:submit name="saveAdd" class="btn" ><f:message key="Add" /></s:submit>
+                        </fieldset>
+                </s:form>
+        </c:if>  
     </s:layout-component>
 </s:layout-render>

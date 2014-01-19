@@ -14,6 +14,9 @@
                 <th><f:message key="sportsman.name"/></th>
                 <th><f:message key="sportsman.lastname"/></th>
                 <th><f:message key="sportsman.dateOfBirth"/></th>
+                <th><f:message key="sportsman.login"/></th>
+	        <th><f:message key="sportsman.password"/></th>
+                <th><f:message key="sportsman.userrole"/></th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -26,6 +29,15 @@
                     <td><c:out value="${sportsmanDTO.name}"/></td> 
                     <td><c:out value="${sportsmanDTO.lastname}"/></td>
                     <td><c:out value="${actionBean.sdfSource.format(sportsmanDTO.dateOfBirth)}"/></td> 
+                    <td><c:out value="${sportsmanDTO.userName}"/></td>
+                    <td><c:out value="${sportsmanDTO.pwd}"/></td>
+                    <td><c:if test="${sportsmanDTO.userRole=='ROLE_USER'}" >
+                            <f:message key="User"/>
+                        </c:if>
+                        <c:if test="${sportsmanDTO.userRole=='ROLE_ADMIN'}" >
+                             <f:message key="Admin"/>
+                        </c:if>
+                    </td>
               
                     <td>
                         <s:link beanclass="com.pa165.sportEventpresentation.SportsmanActionBean" event="delete"><s:param name="sportsmanDTO.sportsmanId" value="${sportsmanDTO.sportsmanId}"/><f:message key="Delete"/></s:link> 
@@ -33,9 +45,11 @@
                     <td>
                         <s:link beanclass="com.pa165.sportEventpresentation.SportsmanActionBean" event="edit"><s:param name="sportsmanDTO.sportsmanId" value="${sportsmanDTO.sportsmanId}"/><f:message key="Edit"/></s:link> 
                     </td>
-                    <td>
-                        <s:link beanclass="com.pa165.sportEventpresentation.SportsmanActionBean" event="showEvents"><s:param name="sportsmanDTO.sportsmanId" value="${sportsmanDTO.sportsmanId}"/><f:message key="ManageEvents"/></s:link>
-                    </td>
+                    <c:if test="${studentDTO.userRole=='ROLE_USER'}" >
+                        <td>
+                            <s:link beanclass="com.pa165.sportEventpresentation.SportsmanActionBean" event="showEvents"><s:param name="sportsmanDTO.sportsmanId" value="${sportsmanDTO.sportsmanId}"/><f:message key="ManageEvents"/></s:link>
+                        </td>
+                    </c:if>
                 </tr>
             </c:forEach>
         </table>

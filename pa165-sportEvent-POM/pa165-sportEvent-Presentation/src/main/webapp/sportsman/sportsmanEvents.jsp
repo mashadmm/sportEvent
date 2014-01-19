@@ -37,7 +37,9 @@
             <s:submit name="registerToEvent"><f:message key="sportsman.register"/></s:submit>
             </fieldset>
         </s:form>
-        <s:link beanclass="com.pa165.sportEventpresentation.SportsmanActionBean" event="all"><f:message key="Back"/></s:link> 
-                
+        <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}" >
+            <s:link beanclass="com.pa165.sportEventpresentation.SportsmanActionBean" event="all"><f:message key="Back"/></s:link> 
+        </c:if> 
+        
     </s:layout-component>
 </s:layout-render>

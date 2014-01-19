@@ -15,8 +15,10 @@
                 <th><f:message key="event.name"/></th>               
                 <th><f:message key="event.dateOfEvent"/></th>
                 <th><f:message key="Sport"/></th>   
-                <th></th>
-                <th></th>
+                <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}" >
+                    <th></th>
+                    <th></th>
+                </c:if>
                 <th></th>
             </tr>
             <c:forEach items="${actionBean.getEvents()}" var="eventDTO" varStatus="loop">
@@ -26,15 +28,18 @@
                     <td><c:out value="${eventDTO.name}"/></td> 
                     <td><c:out value="${actionBean.sdfSource.format(eventDTO.dateOfEvent)}"/></td>
                     <td><c:out value="${eventDTO.sport.name}"/></td>
-                    
-                    <td><s:link beanclass="com.pa165.sportEventpresentation.EventActionBean" event="edit"><s:param name="eventDTO.eventId" value="${eventDTO.eventId}"/><f:message key="Edit"/></s:link></td>
-                    <td><s:link beanclass="com.pa165.sportEventpresentation.EventActionBean" event="delete"><s:param name="eventDTO.eventId" value="${eventDTO.eventId}"/><f:message key="Delete"/></s:link> </td>
-                    
+                    <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}" >
+                        <td><s:link beanclass="com.pa165.sportEventpresentation.EventActionBean" event="edit"><s:param name="eventDTO.eventId" value="${eventDTO.eventId}"/><f:message key="Edit"/></s:link></td>
+                        <td><s:link beanclass="com.pa165.sportEventpresentation.EventActionBean" event="delete"><s:param name="eventDTO.eventId" value="${eventDTO.eventId}"/><f:message key="Delete"/></s:link> </td>
+                    </c:if>
                     <td><s:link beanclass="com.pa165.sportEventpresentation.EventActionBean" event="showSportsmans"><s:param name="eventDTO.eventId" value="${eventDTO.eventId}"/><f:message key="ShowSportsmans"/></s:link> </td>
                 </tr>
             </c:forEach>
         </table>
-       
-         <s:link beanclass="com.pa165.sportEventpresentation.EventActionBean" event="add"><f:message key="Add"/></s:link>
+                
+       <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}" >
+            <s:link beanclass="com.pa165.sportEventpresentation.EventActionBean" event="add"><f:message key="Add"/></s:link>
+       </c:if>
+                
        </s:layout-component>
 </s:layout-render>

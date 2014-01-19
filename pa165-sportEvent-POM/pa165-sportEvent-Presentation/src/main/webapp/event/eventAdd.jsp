@@ -5,14 +5,16 @@
 
 <s:layout-render name="/menu.jsp" nadpis="Event">
     <s:layout-component name="telo">
-        <s:useActionBean beanclass="com.pa165.sportEventpresentation.EventActionBean" var="actionBean"/>
+        <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}" >
+            <s:useActionBean beanclass="com.pa165.sportEventpresentation.EventActionBean" var="actionBean"/>
 
-            <s:form beanclass="com.pa165.sportEventpresentation.EventActionBean">          
-                <fieldset><legend><f:message key="event.add"/></legend>
-                    <%@include file="eventForm.jsp"%>
-                    <s:submit name="saveAdd" class="btn"><f:message key="Add"/></s:submit>
-                    </fieldset>
-            </s:form>
+                <s:form beanclass="com.pa165.sportEventpresentation.EventActionBean">          
+                    <fieldset><legend><f:message key="event.add"/></legend>
+                        <%@include file="eventForm.jsp"%>
+                        <s:submit name="saveAdd" class="btn"><f:message key="Add"/></s:submit>
+                        </fieldset>
+                </s:form>
+        </c:if>
        </s:layout-component>
 </s:layout-render>
 

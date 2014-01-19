@@ -4,7 +4,7 @@
 <%@ taglib prefix="s" uri="http://stripes.sourceforge.net/stripes.tld" %>
 <s:layout-render name="/menu.jsp" nadpis="Sport">
     <s:layout-component name="telo">
-       
+       <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}" > 
             <s:useActionBean beanclass="com.pa165.sportEventpresentation.SportActionBean" var="actionBean"/>
 
             <s:form beanclass="com.pa165.sportEventpresentation.SportActionBean">          
@@ -15,7 +15,7 @@
                     
                     </fieldset>
             </s:form>
-        
+      </c:if>    
     </s:layout-component>
 </s:layout-render>
 

@@ -30,12 +30,14 @@
                     <td><c:out value="${entry.key.lastname}"/></td> 
                     <td><c:out value="${entry.value.grade}"/></td> 
                    
-                    <s:form beanclass="com.pa165.sportEventpresentation.EventActionBean" action="editGrade">
-                        <s:hidden name="eventDTO.eventId" value="${eventDTO.eventId}"/>
-                        <s:hidden name="sportsmanDTO.sportsmanId" value="${entry.key.sportsmanId}"/>
-                        <td><s:text id="b1" name="gradeDTO.grade"/></td>
-                        <td><s:submit name="editGrade"><f:message key="grade.changeGrade"/></s:submit></td>
-                    </s:form>
+                    <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}" >
+                        <s:form beanclass="com.pa165.sportEventpresentation.EventActionBean" action="editGrade">
+                            <s:hidden name="eventDTO.eventId" value="${eventDTO.eventId}"/>
+                            <s:hidden name="sportsmanDTO.sportsmanId" value="${entry.key.sportsmanId}"/>
+                            <td><s:text id="b1" name="gradeDTO.grade"/></td>
+                            <td><s:submit name="editGrade"><f:message key="grade.changeGrade"/></s:submit></td>
+                        </s:form>
+                    </c:if>
                   
                  </tr>
             </c:forEach>

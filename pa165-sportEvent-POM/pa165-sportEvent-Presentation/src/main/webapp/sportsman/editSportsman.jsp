@@ -5,16 +5,16 @@
 
 <s:layout-render name="/menu.jsp" nadpis="Sportsman">
     <s:layout-component name="telo">
+        <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}" >
+            <s:useActionBean beanclass="com.pa165.sportEventpresentation.SportsmanActionBean" var="actionBean"/>
 
-        <s:useActionBean beanclass="com.pa165.sportEventpresentation.SportsmanActionBean" var="actionBean"/>
-
-        <s:form beanclass="com.pa165.sportEventpresentation.SportsmanActionBean">
-            <s:hidden name="sportsmanDTO.sportsmanId"/>
-            <fieldset><legend><f:message key="sportsman.edit"/></legend>
-                <%@include file="sportsmanForm.jsp"%>
-                <s:submit name="saveEdit" class="btn"><f:message key="Edit"/></s:submit>
-                </fieldset>
-        </s:form>
-
+            <s:form beanclass="com.pa165.sportEventpresentation.SportsmanActionBean">
+                <s:hidden name="sportsmanDTO.sportsmanId"/>
+                <fieldset><legend><f:message key="sportsman.edit"/></legend>
+                    <%@include file="sportsmanForm.jsp"%>
+                    <s:submit name="saveEdit" class="btn"><f:message key="Edit"/></s:submit>
+                    </fieldset>
+            </s:form>
+        </c:if>
     </s:layout-component>
 </s:layout-render>
