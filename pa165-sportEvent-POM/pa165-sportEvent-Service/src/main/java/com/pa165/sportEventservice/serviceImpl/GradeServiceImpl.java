@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 
 
@@ -72,6 +73,7 @@ public class GradeServiceImpl implements GradeService {
         this.gradeDAO = gradeDAO;
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public void putGrade(Long sportsmanId, Long eventId, int eventgrade) throws ServiceFailureException{
         if (sportsmanId == null ) {
@@ -89,6 +91,7 @@ public class GradeServiceImpl implements GradeService {
 
     }
     
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     @Transactional(readOnly = true)
     public int getPlace(EventDTO event, SportsmanDTO sportsman) throws ServiceFailureException{
         
@@ -116,6 +119,7 @@ public class GradeServiceImpl implements GradeService {
         return tempplace;
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     @Transactional(readOnly = true)
     public List<GradeDTO> getGrades() throws ServiceFailureException {
                 
@@ -128,6 +132,7 @@ public class GradeServiceImpl implements GradeService {
         return result;
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public GradeDTO add(GradeDTO grade) throws ServiceFailureException {
         if (grade == null) {
@@ -153,6 +158,7 @@ public class GradeServiceImpl implements GradeService {
 
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public void remove(GradeDTO grade) throws ServiceFailureException {
         if (grade == null) {
@@ -175,6 +181,7 @@ public class GradeServiceImpl implements GradeService {
     }
     
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public GradeDTO edit(GradeDTO grade) throws ServiceFailureException {
@@ -201,6 +208,7 @@ public class GradeServiceImpl implements GradeService {
         
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     @Override
     @Transactional(readOnly = true)
     public GradeDTO findById(Long sportsmanid, Long eventid) throws ServiceFailureException {

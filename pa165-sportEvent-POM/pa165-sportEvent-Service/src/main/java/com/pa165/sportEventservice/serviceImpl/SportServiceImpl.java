@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
+import org.springframework.security.access.prepost.PreAuthorize;
 
 
 /**
@@ -61,7 +61,7 @@ public class SportServiceImpl implements SportService {
     }
 
    
-    
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public SportDTO add(SportDTO sport) throws ServiceFailureException {
         if (sport == null) {
@@ -75,7 +75,7 @@ public class SportServiceImpl implements SportService {
 
     }
 
-    
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public void remove(SportDTO sport) throws ServiceFailureException {
         if (sport == null) {
@@ -93,7 +93,7 @@ public class SportServiceImpl implements SportService {
              sportDAO.remove(toRemove);
     }
 
-    
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public SportDTO edit(SportDTO sport) throws ServiceFailureException {
         if (sport == null) {
@@ -109,7 +109,7 @@ public class SportServiceImpl implements SportService {
         return mapper.map(toModify, SportDTO.class);
     }
 
-   
+   @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     @Transactional(readOnly = true)
     public SportDTO findById(Long id) throws ServiceFailureException {
         if (id == null) {
@@ -125,7 +125,7 @@ public class SportServiceImpl implements SportService {
 
     }
 
-    
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     @Transactional(readOnly = true)
     public List<SportDTO> getAll() throws ServiceFailureException{
         List<Sport> sports = sportDAO.findAll();
@@ -141,7 +141,7 @@ public class SportServiceImpl implements SportService {
     
    
     
-       
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     @Transactional(readOnly = true)
     public List<SportDTO> findByName(String name) throws ServiceFailureException {
         if (name == null) {
@@ -159,6 +159,7 @@ public class SportServiceImpl implements SportService {
         return result;
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     @Transactional(readOnly = true)
     public List<EventDTO> getEvents(SportDTO sport) throws ServiceFailureException {
         if (sport == null) {

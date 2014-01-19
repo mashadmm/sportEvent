@@ -23,6 +23,7 @@ import com.pa165.sportEventservice.service.SportsmanService;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 
 /**
@@ -74,6 +75,7 @@ public class SportsmanServiceImpl implements SportsmanService {
         this.gradeDAO = gradeDAO;
     }
     
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     @Override
     public SportsmanDTO add(SportsmanDTO sportsman) throws ServiceFailureException {
@@ -88,7 +90,7 @@ public class SportsmanServiceImpl implements SportsmanService {
 
     }
 
-    
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     @Override
     public void remove(SportsmanDTO sportsman) throws ServiceFailureException {
@@ -107,7 +109,7 @@ public class SportsmanServiceImpl implements SportsmanService {
         sportsmanDAO.remove(toRemove);
     }
 
-    
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     @Override
     public SportsmanDTO edit(SportsmanDTO sportsman) throws ServiceFailureException {
@@ -124,7 +126,7 @@ public class SportsmanServiceImpl implements SportsmanService {
         return mapper.map(toModify, SportsmanDTO.class);
     }
 
-   
+   @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     @Transactional(readOnly = true)
     @Override
     public SportsmanDTO findById(Long id) throws ServiceFailureException {
@@ -141,7 +143,7 @@ public class SportsmanServiceImpl implements SportsmanService {
 
     }
 
-    
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     @Transactional(readOnly = true)
     @Override
     public List<SportsmanDTO> getAll() throws ServiceFailureException{
@@ -155,7 +157,7 @@ public class SportsmanServiceImpl implements SportsmanService {
         return result;
     }
 
-    
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     @Override
     public SportsmanDTO registerToEvent(SportsmanDTO sportsman, EventDTO event) throws ServiceFailureException {
@@ -190,7 +192,7 @@ public class SportsmanServiceImpl implements SportsmanService {
     }
 
     
-       
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     @Transactional(readOnly = true)
     @Override
     public List<SportsmanDTO> findByLastname(String lastname) throws ServiceFailureException {
@@ -209,6 +211,7 @@ public class SportsmanServiceImpl implements SportsmanService {
         return result;
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     @Transactional(readOnly = true)
     @Override
     public Map<EventDTO, GradeDTO> getEventsWithGrades(SportsmanDTO sportsman) throws ServiceFailureException {
@@ -223,8 +226,19 @@ public class SportsmanServiceImpl implements SportsmanService {
 
         return cache;
     }
-
     
+    @Transactional(readOnly=true)
+    public SportsmanDTO getByLogin(String login) throws ServiceFailureException {
+        if (login == null) {
+            throw new IllegalArgumentException("name is null in SportsmanServiceImpl.getByLogin.");
+        }
+
+        Sportsman sportsman = sportsmanDAO.getByLogin(login);
+        SportsmanDTO result = mapper.map(sportsman, SportsmanDTO.class);
+		
+        return result;	
+        }	
+        
     
     
    

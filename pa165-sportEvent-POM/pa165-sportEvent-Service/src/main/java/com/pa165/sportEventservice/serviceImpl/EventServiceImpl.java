@@ -24,6 +24,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 
 /**
@@ -68,6 +69,7 @@ public class EventServiceImpl implements EventService {
         this.gradeDAO = gradeDAO;
     }
     
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public EventDTO add(EventDTO event) throws ServiceFailureException {
         if (event == null) {
@@ -81,7 +83,7 @@ public class EventServiceImpl implements EventService {
 
     }
 
-    
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public void remove(EventDTO event) throws ServiceFailureException {
         if (event == null) {
@@ -99,7 +101,7 @@ public class EventServiceImpl implements EventService {
         eventDAO.remove(toRemove);
     }
 
-    
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public EventDTO edit(EventDTO event) throws ServiceFailureException {
         if (event == null) {
@@ -115,7 +117,7 @@ public class EventServiceImpl implements EventService {
         return mapper.map(toModify, EventDTO.class);
     }
 
-   
+   @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     @Transactional(readOnly = true)
     public EventDTO findById(Long id) throws ServiceFailureException {
         if (id == null) {
@@ -131,7 +133,7 @@ public class EventServiceImpl implements EventService {
 
     }
 
-    
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     @Transactional(readOnly = true)
     public List<EventDTO> getAll() throws ServiceFailureException{
         List<Event> events = eventDAO.findAll();
@@ -146,7 +148,7 @@ public class EventServiceImpl implements EventService {
 
     
        
-       
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')") 
     @Transactional(readOnly = true)
     public List<EventDTO> findByName(String name) throws ServiceFailureException {
         if (name == null) {
@@ -164,6 +166,7 @@ public class EventServiceImpl implements EventService {
         return result;
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     @Transactional(readOnly = true)
     @Override
     public List<EventDTO> findByDates(Date startDate, Date endDate) throws ServiceFailureException {
@@ -184,6 +187,7 @@ public class EventServiceImpl implements EventService {
         
     }
     
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     @Transactional(readOnly = true)
     @Override
     public List<SportsmanDTO> getSportsmans(EventDTO event) throws ServiceFailureException {
@@ -198,6 +202,7 @@ public class EventServiceImpl implements EventService {
         return result;
     }
     
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     @Transactional(readOnly = true)
     @Override
     public Map<SportsmanDTO, GradeDTO> getSportsmansWithGrades(EventDTO event) throws ServiceFailureException {

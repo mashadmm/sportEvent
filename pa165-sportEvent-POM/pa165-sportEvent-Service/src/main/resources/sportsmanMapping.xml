@@ -22,7 +22,19 @@
     <field>
       <a>dateOfBirth</a>
       <b>dateOfBirth</b>
-    </field>   
+    </field>  
+    <field>
+      <a>userName</a>
+      <b>userName</b>
+    </field>
+    <field>
+      <a>pwd</a>
+      <b>pwd</b>
+    </field>
+    <field>
+      <a>userRole</a>
+      <b>userRole</b>
+    </field> 
      <field>
       <a>results</a>
       <b>results</b>
