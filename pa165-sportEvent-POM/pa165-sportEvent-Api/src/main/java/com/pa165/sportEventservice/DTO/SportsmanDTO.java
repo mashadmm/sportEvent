@@ -25,6 +25,9 @@ public class SportsmanDTO implements java.io.Serializable {
     private String name;
     private String lastname;
     private Date dateOfBirth;
+    private String userName;
+    private String pwd;
+    private String userRole;
     
     private List<GradeDTO> results = new ArrayList<GradeDTO>(0);
     
@@ -77,7 +80,32 @@ public class SportsmanDTO implements java.io.Serializable {
      public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
      
+        
  
      public List<GradeDTO> getResults() {
 		return this.results;

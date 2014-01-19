@@ -36,5 +36,6 @@ public interface SportsmanService {
     
     public Map<EventDTO, GradeDTO> getEventsWithGrades(SportsmanDTO sportsman) throws ServiceFailureException ;
     
+    public SportsmanDTO getByLogin(String login) throws ServiceFailureException;
    
 }
