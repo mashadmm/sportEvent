@@ -10,7 +10,6 @@ import com.pa165.sportEventservice.service.EventService;
 import com.pa165.sportEventservice.service.GradeService;
 import com.pa165.sportEventservice.service.SportsmanService;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import net.sourceforge.stripes.action.ActionBean;
@@ -53,7 +52,9 @@ public class SportsmanActionBean implements ActionBean {
     @ValidateNestedProperties(value = {
         @Validate(on = {"saveAdd", "saveEdit"}, field = "name", required = true),
         @Validate(on = {"saveAdd", "saveEdit"}, field = "lastname", required = true),
-        @Validate(on = {"saveAdd", "saveEdit"}, field="dateOfBirth", required=true)
+        @Validate(on = {"saveAdd", "saveEdit"}, field="dateOfBirth", required=true),
+        @Validate(on = {"saveAdd", "saveEdit"}, field="userName", required=true, minlength=2, maxlength=20),
+        @Validate(on = {"saveAdd", "saveEdit"}, field="pwd", required=true, minlength=2, maxlength=20)
         
     })
     protected SportsmanDTO sportsmanDTO;
@@ -213,6 +214,17 @@ public class SportsmanActionBean implements ActionBean {
         return context;
     }
    
-     
-    
+    public Resolution showEventsByLogin() {
+            log.debug("showEventsByLogin()");
+            return new ForwardResolution("/sportsman/sportsmanEvents.jsp");
+        }
+        @Before(stages = LifecycleStage.BindingAndValidation, on = { "showEventsByLogin"})
+        public void loadSportsmanByLogin() throws ServiceFailureException{
+            String login = context.getRequest().getUserPrincipal().getName();
+            if (login == null) {
+                return;
+            }
+            sportsmanDTO = sportsmanService.getByLogin(login);
+       } 
+
 }
