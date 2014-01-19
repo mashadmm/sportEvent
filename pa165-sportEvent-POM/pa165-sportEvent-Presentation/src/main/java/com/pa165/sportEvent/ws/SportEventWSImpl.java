@@ -19,10 +19,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
-import net.sourceforge.stripes.integration.spring.SpringBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.GrantedAuthorityImpl;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 
@@ -41,6 +44,10 @@ public class SportEventWSImpl extends SpringBeanAutowiringSupport implements Spo
 
     public SportEventWSImpl() {
         context = new ClassPathXmlApplicationContext("spring-context.xml");
+        List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
+        GrantedAuthority role = new GrantedAuthorityImpl("ROLE_ADMIN");
+        Authentication authToken = new UsernamePasswordAuthenticationToken ("soap", "soap", list);
+        SecurityContextHolder.getContext().setAuthentication(authToken);
         sportsmanManager = (SportsmanService) context.getBean("sportsmanService");
         gradeManager = (GradeService) context.getBean("gradeService");
         sportManager = (SportService) context.getBean("sportService");
