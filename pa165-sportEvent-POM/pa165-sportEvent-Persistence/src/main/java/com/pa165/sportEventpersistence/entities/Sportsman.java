@@ -40,7 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "sportsman.findByLastname", query = "SELECT u FROM Sportsman AS u WHERE u.lastname LIKE :lastname")
+        @NamedQuery(name = "sportsman.findByLastname", query = "SELECT u FROM Sportsman AS u WHERE u.lastname LIKE :lastname AND (u.userRole is null or u.userRole != 'ROLE_ADMIN') ")
          
 })
 @Table(name = "SPORTSMAN")
