@@ -13,6 +13,7 @@ import com.pa165.sportevent.ws.SportEventWSImplService;
 import com.pa165.sportevent.ws.SportsmanDTO;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.ws.BindingProvider;
 
 
 
@@ -21,6 +22,9 @@ import java.util.List;
  * @author Maria
  */
 public class SportEventClient {
+    
+    public static final String  user="rest";
+    public static final String  password="rest";
 
     public SportEventClient() {}
         
@@ -32,6 +36,9 @@ public class SportEventClient {
                         SportEventWSImplService service = new SportEventWSImplService();
                         SportEventWSImpl port = service.getSportEventWSImplPort();
                         // TODO process result here
+                        BindingProvider bp = (BindingProvider) port;
+                        bp.getRequestContext().put(BindingProvider.USERNAME_PROPERTY, user);
+                        bp.getRequestContext().put(BindingProvider.PASSWORD_PROPERTY, password);
                         result = port.eventManagerfindAll();
                         //System.out.println("Result = "+result);
                     } catch (Exception ex) {
@@ -48,6 +55,9 @@ public class SportEventClient {
                 // TODO initialize WS operation arguments here
                 EventDTO arg0 = new EventDTO();
                 arg0 = event;
+                BindingProvider bp = (BindingProvider) port;
+                bp.getRequestContext().put(BindingProvider.USERNAME_PROPERTY, user);
+                bp.getRequestContext().put(BindingProvider.PASSWORD_PROPERTY, password);
                 port.eventManagersave(arg0);
             } catch (Exception ex) {
                 // TODO handle custom exceptions here
@@ -65,6 +75,9 @@ public class SportEventClient {
                 // TODO initialize WS operation arguments here
                 EventDTO arg0 = new EventDTO();
                 arg0 = event;
+                BindingProvider bp = (BindingProvider) port;
+                bp.getRequestContext().put(BindingProvider.USERNAME_PROPERTY, user);
+                bp.getRequestContext().put(BindingProvider.PASSWORD_PROPERTY, password);
                 port.eventManagerupdate(arg0);
             } catch (Exception ex) {
                 // TODO handle custom exceptions here
@@ -82,6 +95,9 @@ public class SportEventClient {
                 // TODO initialize WS operation arguments here
                 EventDTO arg0 = new EventDTO();
                 arg0 = event;
+                BindingProvider bp = (BindingProvider) port;
+                bp.getRequestContext().put(BindingProvider.USERNAME_PROPERTY, user);
+                bp.getRequestContext().put(BindingProvider.PASSWORD_PROPERTY, password);
                 port.eventManagerdelete(arg0);
             } catch (Exception ex) {
                 // TODO handle custom exceptions here
@@ -99,6 +115,9 @@ public class SportEventClient {
                 // TODO initialize WS operation arguments here
                 java.lang.Long arg0 = eventid;
                 // TODO process result here
+                BindingProvider bp = (BindingProvider) port;
+                bp.getRequestContext().put(BindingProvider.USERNAME_PROPERTY, user);
+                bp.getRequestContext().put(BindingProvider.PASSWORD_PROPERTY, password);
                 result = port.eventManagerfindById(arg0);
                 //System.out.println("Result = "+result);
             } catch (Exception ex) {
@@ -118,6 +137,9 @@ public class SportEventClient {
                 SportEventWSImplService service = new SportEventWSImplService();
                 SportEventWSImpl port = service.getSportEventWSImplPort();
                 // TODO process result here
+                BindingProvider bp = (BindingProvider) port;
+                bp.getRequestContext().put(BindingProvider.USERNAME_PROPERTY, user);
+                bp.getRequestContext().put(BindingProvider.PASSWORD_PROPERTY, password);
                 result = port.sportsmanManagerfindAll();
                 System.out.println("Result = "+result);
             } catch (Exception ex) {
@@ -136,6 +158,9 @@ public class SportEventClient {
                 // TODO initialize WS operation arguments here
                 SportsmanDTO arg0 = new SportsmanDTO();
                 arg0 = sportsman;
+                BindingProvider bp = (BindingProvider) port;
+                bp.getRequestContext().put(BindingProvider.USERNAME_PROPERTY, user);
+                bp.getRequestContext().put(BindingProvider.PASSWORD_PROPERTY, password);
                 port.sportsmanManagersave(arg0);
             } catch (Exception ex) {
                 // TODO handle custom exceptions here
@@ -153,6 +178,9 @@ public class SportEventClient {
                 // TODO initialize WS operation arguments here
                 SportsmanDTO arg0 = new SportsmanDTO();
                 arg0 = sportsman;
+                BindingProvider bp = (BindingProvider) port;
+                bp.getRequestContext().put(BindingProvider.USERNAME_PROPERTY, user);
+                bp.getRequestContext().put(BindingProvider.PASSWORD_PROPERTY, password);
                 port.sportsmanManagerupdate(arg0);
             } catch (Exception ex) {
                 // TODO handle custom exceptions here
@@ -170,6 +198,9 @@ public class SportEventClient {
                 // TODO initialize WS operation arguments here
                 SportsmanDTO arg0 = new SportsmanDTO();
                 arg0 = sportsman;
+                BindingProvider bp = (BindingProvider) port;
+                bp.getRequestContext().put(BindingProvider.USERNAME_PROPERTY, user);
+                bp.getRequestContext().put(BindingProvider.PASSWORD_PROPERTY, password);
                 port.sportsmanManagerdelete(arg0);
             } catch (Exception ex) {
                 // TODO handle custom exceptions here
@@ -186,6 +217,9 @@ public class SportEventClient {
                 // TODO initialize WS operation arguments here
                 java.lang.Long arg0 = sportsmanid;
                 // TODO process result here
+                BindingProvider bp = (BindingProvider) port;
+                bp.getRequestContext().put(BindingProvider.USERNAME_PROPERTY, user);
+                bp.getRequestContext().put(BindingProvider.PASSWORD_PROPERTY, password);
                 result = port.sportsmanManagerfindById(arg0);
                 //System.out.println("Result = "+result);
             } catch (Exception ex) {
@@ -205,6 +239,9 @@ public class SportEventClient {
                 SportEventWSImplService service = new SportEventWSImplService();
                 SportEventWSImpl port = service.getSportEventWSImplPort();
                 // TODO process result here
+                BindingProvider bp = (BindingProvider) port;
+                bp.getRequestContext().put(BindingProvider.USERNAME_PROPERTY, user);
+                bp.getRequestContext().put(BindingProvider.PASSWORD_PROPERTY, password);
                 result = port.gradeManagerfindAll();
                 System.out.println("Result = "+result);
             } catch (Exception ex) {
@@ -223,6 +260,9 @@ public class SportEventClient {
                 // TODO initialize WS operation arguments here
                 GradeDTO arg0 = new GradeDTO();
                 arg0 = gradeDto;
+                BindingProvider bp = (BindingProvider) port;
+                bp.getRequestContext().put(BindingProvider.USERNAME_PROPERTY, user);
+                bp.getRequestContext().put(BindingProvider.PASSWORD_PROPERTY, password);
                 port.gradeManagersave(arg0);
             } catch (Exception ex) {
                 System.out.println("ERRRRROR:" + ex);
@@ -240,6 +280,9 @@ public class SportEventClient {
                 // TODO initialize WS operation arguments here
                 GradeDTO arg0 = new GradeDTO();
                 arg0 = gradeDto;
+                BindingProvider bp = (BindingProvider) port;
+                bp.getRequestContext().put(BindingProvider.USERNAME_PROPERTY, user);
+                bp.getRequestContext().put(BindingProvider.PASSWORD_PROPERTY, password);
                 port.gradeManagerupdate(arg0);
             } catch (Exception ex) {
                 // TODO handle custom exceptions here
@@ -256,6 +299,9 @@ public class SportEventClient {
                 SportEventWSImpl port = service.getSportEventWSImplPort();
                 // TODO initialize WS operation arguments here
                 GradeDTO arg0 = this.gradeManagerfindById(sportsmanid, eventid);
+                BindingProvider bp = (BindingProvider) port;
+                bp.getRequestContext().put(BindingProvider.USERNAME_PROPERTY, user);
+                bp.getRequestContext().put(BindingProvider.PASSWORD_PROPERTY, password);
                 port.gradeManagerdelete(arg0);
             } catch (Exception ex) {
                 // TODO handle custom exceptions here
@@ -274,6 +320,9 @@ public class SportEventClient {
                 java.lang.Long arg0 = eventid;
                 java.lang.Long arg1 = sportsmanid;
                 // TODO process result here
+                BindingProvider bp = (BindingProvider) port;
+                bp.getRequestContext().put(BindingProvider.USERNAME_PROPERTY, user);
+                bp.getRequestContext().put(BindingProvider.PASSWORD_PROPERTY, password);
                 result = port.gradeManagerfindById(arg0, arg1);
                 System.out.println("Result = "+result);
             } catch (Exception ex) {
@@ -292,7 +341,9 @@ public class SportEventClient {
             try { // Call Web Service Operation
                 SportEventWSImplService service = new SportEventWSImplService();
                 SportEventWSImpl port = service.getSportEventWSImplPort();
-                
+                BindingProvider bp = (BindingProvider) port;
+                bp.getRequestContext().put(BindingProvider.USERNAME_PROPERTY, user);
+                bp.getRequestContext().put(BindingProvider.PASSWORD_PROPERTY, password);
                 result = port.sportManagergetAll();
                 System.out.println("Result = "+result);
             } catch (Exception ex) {

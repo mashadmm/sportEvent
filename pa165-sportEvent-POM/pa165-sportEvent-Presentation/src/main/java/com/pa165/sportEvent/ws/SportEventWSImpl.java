@@ -44,10 +44,10 @@ public class SportEventWSImpl extends SpringBeanAutowiringSupport implements Spo
 
     public SportEventWSImpl() {
         context = new ClassPathXmlApplicationContext("spring-context.xml");
-        List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
-        GrantedAuthority role = new GrantedAuthorityImpl("ROLE_ADMIN");
-        Authentication authToken = new UsernamePasswordAuthenticationToken ("soap", "soap", list);
-        SecurityContextHolder.getContext().setAuthentication(authToken);
+//        List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
+//        GrantedAuthority role = new GrantedAuthorityImpl("ROLE_ADMIN");
+//        Authentication authToken = new UsernamePasswordAuthenticationToken ("soap", "soap", list);
+//        SecurityContextHolder.getContext().setAuthentication(authToken);
         sportsmanManager = (SportsmanService) context.getBean("sportsmanService");
         gradeManager = (GradeService) context.getBean("gradeService");
         sportManager = (SportService) context.getBean("sportService");

@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Sun Jan 19 11:24:51 CET 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.7.1.1 - (1040133): instance a816c00e-0143-aa08-0f04-000002621f00 
+Mon Jan 20 20:38:22 CET 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.7.1.1 - (1040133): instance a816c00e-0143-b129-2e30-00000262dc38 
 on database directory memory:C:\Users\Maria\Documents\NetBeansProjects\sportEventTest\pa165-sportEvent-POM\pa165-sportEvent-Service\testDB  with class loader sun.misc.Launcher$AppClassLoader@141d19 
 Loaded from file:/C:/Users/Maria/.m2/repository/org/apache/derby/derby/10.7.1.1/derby-10.7.1.1.jar
 java.vendor=Oracle Corporation

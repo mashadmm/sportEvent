@@ -71,5 +71,14 @@ public class SportsmanDAO extends BaseDAO<Sportsman> {
             return null;
         }
     }
+    
+//    @Override
+//    public List<Sportsman> findAll() {
+//       
+//        Query q = getEntityManager().createQuery("FROM Sportsman e WHERE  != :role");
+//        q.setParameter("role", "ROLE_ADMIN");  
+//        List<Sportsman> list = (List<Sportsman>) q.getResultList();
+//        return list;
+//    }
 
 }
