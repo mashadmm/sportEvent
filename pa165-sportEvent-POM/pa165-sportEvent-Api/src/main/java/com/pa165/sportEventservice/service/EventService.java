@@ -30,6 +30,8 @@ public interface EventService {
 
     public List<EventDTO> getAll() throws ServiceFailureException;
     
+    public List<EventDTO> getAllUpToDate() throws ServiceFailureException;
+    
     public List<EventDTO> findByName(String name) throws ServiceFailureException;
     
     public List<EventDTO> findByDates(Date startDate, Date endDate) throws ServiceFailureException;

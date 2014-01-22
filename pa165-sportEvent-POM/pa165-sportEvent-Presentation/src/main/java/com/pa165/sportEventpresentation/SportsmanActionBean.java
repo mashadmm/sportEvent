@@ -176,7 +176,7 @@ public class SportsmanActionBean implements ActionBean {
 
     public List<EventDTO> getAllEvents() throws ServiceFailureException {
         log.debug("getAllEvents()");
-        return eventService.getAll();
+        return eventService.getAllUpToDate();
     }
 
     public Map<EventDTO, GradeDTO> getEvents() throws ServiceFailureException {

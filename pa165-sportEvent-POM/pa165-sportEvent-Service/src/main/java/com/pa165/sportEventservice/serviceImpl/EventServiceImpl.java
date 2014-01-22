@@ -21,7 +21,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import com.pa165.sportEventservice.service.EventService;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -146,6 +145,23 @@ public class EventServiceImpl implements EventService {
         return result;
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
+    @Transactional(readOnly = true)
+    public List<EventDTO> getAllUpToDate() throws ServiceFailureException{
+        List<Event> events = eventDAO.findAll();
+        List<EventDTO> result = new ArrayList<EventDTO>();
+        Date date = new Date();
+        for (Event event : events) {
+            if (event.getDateOfEvent().after(date)){
+                EventDTO tempevent = mapper.map(event, EventDTO.class);
+                result.add(tempevent);
+            }
+        }
+
+        return result;
+    }
+
+    
     
        
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')") 
