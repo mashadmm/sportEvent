@@ -12,7 +12,6 @@ Run web application:
 - web-browser:  http://localhost:8080/pa165/
 
 
-
 Run desktop application:
 -in command line go to the folder: cd .../pa165-sportEvent-Client 
 - then: mvn exec:exec 
