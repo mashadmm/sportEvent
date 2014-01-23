@@ -1093,6 +1093,7 @@ public class GUI extends javax.swing.JFrame {
                 if (gradetemp.getSportsman().getSportsmanId()== sportsman.getSportsmanId())
                     if (gradetemp.getEvent().getEventId()== event.getEventId())
                             notexist=false;
+                            
             }    
          try {
             if (notexist) { // Add
@@ -1106,8 +1107,8 @@ public class GUI extends javax.swing.JFrame {
                 gradesSwingWorker.execute();
             } else { // Update
                 LOGGER.log(Level.INFO, "Updating event-sportsman");
-                client.gradeManagerupdate(grade);
-                gradeTableModel.addGrade(grade);
+                String msg = "This sportman ia already registered to this event";
+                JOptionPane.showMessageDialog(new JFrame(),msg, "Dialog",JOptionPane.ERROR_MESSAGE);
             }
             dialog_grades.setVisible(false);
         } catch (Exception ex) {

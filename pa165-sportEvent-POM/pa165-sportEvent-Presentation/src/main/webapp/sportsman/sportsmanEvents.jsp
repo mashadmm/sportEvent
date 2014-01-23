@@ -35,6 +35,7 @@
             <fieldset><legend><f:message key="sportsman.registerToEvent"/></legend>
                 <%@include file="registerSportsmanToEventForm.jsp"%>
             <s:submit name="registerToEvent"><f:message key="sportsman.register"/></s:submit>
+            
             </fieldset>
         </s:form>
         <c:if test="${pageContext.request.isUserInRole('ROLE_ADMIN')}" >

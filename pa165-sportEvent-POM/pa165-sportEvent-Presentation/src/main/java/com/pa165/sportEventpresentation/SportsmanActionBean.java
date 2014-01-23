@@ -198,7 +198,7 @@ public class SportsmanActionBean implements ActionBean {
              return getContext().getSourcePageResolution();
         } catch ( ServiceFailureException e) {
             ValidationErrors errors = new ValidationErrors();
-            errors.add("event", new LocalizableError("event.empty"));
+            errors.add("registerToEvent", new LocalizableError("register.error"));
             getContext().setValidationErrors(errors);
             return getContext().getSourcePageResolution();
         }
@@ -218,6 +218,7 @@ public class SportsmanActionBean implements ActionBean {
             log.debug("showEventsByLogin()");
             return new ForwardResolution("/sportsman/sportsmanEvents.jsp");
         }
+    
         @Before(stages = LifecycleStage.BindingAndValidation, on = { "showEventsByLogin"})
         public void loadSportsmanByLogin() throws ServiceFailureException{
             String login = context.getRequest().getUserPrincipal().getName();

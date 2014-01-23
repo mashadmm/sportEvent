@@ -168,6 +168,13 @@ public class SportsmanServiceImpl implements SportsmanService {
         if (event == null || event.getEventId() == null) {
             throw new IllegalArgumentException("event is null in sportsmanServiceImpl.registerToEvent.");
         }
+        List<Grade> grades = gradeDAO.findBySportsman(sportsman.getSportsmanId());
+        for (Grade grade : grades) {
+            if (event.getEventId().equals(grade.getEvent().getEventId())){
+                throw new ServiceFailureException("event is already registered for this sportsman in sportsmanServiceImpl.registerToEvent.");
+            }
+        }
+        
         Date currentdate = new Date();
         Long id = event.getEventId();
         Event eventForRegistry = eventDAO.findById(event.getEventId());

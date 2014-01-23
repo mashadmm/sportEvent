@@ -14,7 +14,7 @@
 			<f:message key="LoginFail"/>
 			${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}                          
 		</font>  
-	</c:if> 
+            </c:if> 
  
 	<form name='f' action="<c:url value='/j_spring_security_check' />"
 		method='POST'>
